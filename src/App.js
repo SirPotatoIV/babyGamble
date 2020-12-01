@@ -4,13 +4,15 @@ import About from './pages/About';
 import Guess from './pages/Guess';
 import Home from './pages/Home';
 
+import Navbar from './components/Navbar';
+
 import './App.scss';
 
 function App() {
   return (
     <BrowserRouter>
       <div>
-        <nav>
+        {/*  <nav>
           <ul>
             <li>
               <Link to="/">Home</Link>
@@ -22,7 +24,8 @@ function App() {
               <Link to="/about">About</Link>
             </li>
           </ul>
-        </nav>
+        </nav> */}
+        <Navbar />
         <Switch>
           <Route path="/guess">
             <Guess />
