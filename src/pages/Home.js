@@ -6,8 +6,11 @@ import Typography from '@material-ui/core/Typography';
 
 export default function Home() {
   useEffect(() => {
-    const guesses = firestore.collection('guesses').get();
-    console.log(guesses);
+    const getGuesses = async () => {
+      const snapshot = await firestore.collection('guesses').get();
+      console.log({ snapshot });
+    };
+    getGuesses();
   }, []);
 
   return (
