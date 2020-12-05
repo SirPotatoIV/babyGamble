@@ -1,25 +1,45 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import AppBar from '@material-ui/core/AppBar';
-import Button from '@material-ui/core/Button';
-import Toolbar from '@material-ui/core/Toolbar';
+// import Button from '@material-ui/core/Button';
+// import Toolbar from '@material-ui/core/Toolbar';
+import Tab from '@material-ui/core/Tab';
+import Tabs from '@material-ui/core/Tabs';
 
 export default function NavBar() {
+  const [value, setValue] = useState(0);
+
+  function handleClick(tab) {
+    setValue(tab);
+  }
+
   return (
-    <div>
+    <>
       <AppBar position="static">
-        <Toolbar>
-          <Button component={Link} to="/">
-            Home
-          </Button>
-          <Button component={Link} to="/guess" variant="text">
-            Guess
-          </Button>
-          <Button component={Link} to="/about">
-            About
-          </Button>
-        </Toolbar>
+        <Tabs value={value}>
+          <Tab
+            onClick={() => handleClick(0)}
+            value={0}
+            component={Link}
+            to="/"
+            label="Home"
+          />
+          <Tab
+            onClick={() => handleClick(1)}
+            value={1}
+            component={Link}
+            to="/guess"
+            label="Guess"
+          />
+          <Tab
+            onClick={() => handleClick(2)}
+            value={2}
+            component={Link}
+            to="/about"
+            label="About"
+          />
+        </Tabs>
       </AppBar>
-    </div>
+    </>
   );
 }
