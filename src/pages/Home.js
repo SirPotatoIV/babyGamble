@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { firestore } from '../components/Firebase';
+import { firestore, collectIdsAndDocs } from '../components/Firebase';
 
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
@@ -15,9 +15,7 @@ export default function Home() {
   async function getGuesses() {
     const snapshots = await firestore.collection('guesses').get();
 
-    const userGuesses = snapshots.docs.map((doc) => {
-      return { id: doc.id, ...doc.data() };
-    });
+    const userGuesses = snapshots.docs.map(collectIdsAndDocs);
 
     setGuesses(userGuesses);
   }
