@@ -1,24 +1,25 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { firestore } from '../components/Firebase';
 
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 
-const getGuesses = async () => {
-  const snapshots = await firestore.collection('guesses').get();
-
-  snapshots.forEach((document) => {
-    const id = document.id;
-    const data = document.data();
-
-    console.log({ id, data });
-  });
-};
-
 export default function Home() {
+  const [guesses, setGuesses] = useState({});
+
   useEffect(() => {
     getGuesses();
   }, []);
+
+  async function getGuesses() {
+    const snapshots = await firestore.collection('guesses').get();
+
+    const userGuesses = snapshots.docs.map((doc) => {
+      return { id: doc.id, ...doc.data() };
+    });
+
+    setGuesses(userGuesses);
+  }
 
   return (
     <Box color="text.primary">
