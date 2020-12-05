@@ -1,5 +1,5 @@
 import React from 'react';
-import { firebase, firestore } from './components/Firebase';
+import { firebase } from './components/Firebase';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import About from './pages/About';
 import Guess from './pages/Guess';
