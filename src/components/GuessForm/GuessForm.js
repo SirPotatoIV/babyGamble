@@ -29,11 +29,12 @@ export default function GuessForm() {
 
   async function handleSubmitGuess(event) {
     event.preventDefault();
-    console.log('Submit Occurred');
-    const guess = { firstName, lastName, email };
-    const response = await firestore.collection('guesses').add(guess);
 
-    console.log(response);
+    const guess = { firstName, lastName, email };
+    const docRef = await firestore.collection('guesses').add(guess);
+    const document = await docRef.get();
+
+    console.log(document.id);
   }
 
   return (
