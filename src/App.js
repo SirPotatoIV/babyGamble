@@ -4,13 +4,14 @@ import About from './pages/About';
 import Guess from './pages/Guess';
 import Home from './pages/Home';
 
-// import Navbar from './components/Navbar';
+import Navbar from './components/Navbar';
 
 import './App.scss';
 
 function App() {
   return (
     <BrowserRouter>
+      <Navbar />
       <Switch>
         <Route path="/about">
           <About />
