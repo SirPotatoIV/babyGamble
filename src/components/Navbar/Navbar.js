@@ -16,7 +16,7 @@ export default function NavBar() {
   return (
     <>
       <AppBar position="static">
-        <Tabs value={value}>
+        <Tabs value={value} centered>
           <Tab
             onClick={() => handleClick(0)}
             value={0}
