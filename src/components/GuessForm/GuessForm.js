@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import TextField from '@material-ui/core/TextField';
@@ -21,6 +21,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function GuessForm() {
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
   const classes = useStyles();
 
   return (
@@ -33,6 +36,10 @@ export default function GuessForm() {
             label="First Name"
             type="text"
             variant="outlined"
+            onChange={(event) => {
+              setFirstName(event.target.value);
+            }}
+            value={firstName}
           />
           <TextField
             className={classes.textField}
@@ -40,6 +47,10 @@ export default function GuessForm() {
             label="Last Name"
             type="text"
             variant="outlined"
+            onChange={(event) => {
+              setLastName(event.target.value);
+            }}
+            value={lastName}
           />
         </div>
         <div>
@@ -50,6 +61,10 @@ export default function GuessForm() {
             label="E-mail"
             type="email"
             variant="outlined"
+            onChange={(event) => {
+              setEmail(event.target.value);
+            }}
+            value={email}
           />
         </div>
         <Button variant="contained" color="primary" endIcon={<Icon>send</Icon>}>
