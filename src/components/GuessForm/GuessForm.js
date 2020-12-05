@@ -11,6 +11,9 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(1),
     width: '25ch',
   },
+  textFieldFull: {
+    margin: theme.spacing(1),
+  },
 }));
 
 export default function GuessForm() {
@@ -37,17 +40,11 @@ export default function GuessForm() {
         </div>
         <div>
           <TextField
-            className={classes.textField}
-            id="firstName"
-            label="First Name"
-            type="text"
-            variant="outlined"
-          />
-          <TextField
-            className={classes.textField}
-            id="lastName"
-            label="Last Name"
-            type="text"
+            className={classes.textFieldFull}
+            fullWidth
+            id="email"
+            label="E-mail"
+            type="email"
             variant="outlined"
           />
         </div>
