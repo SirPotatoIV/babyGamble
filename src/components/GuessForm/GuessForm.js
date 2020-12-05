@@ -1,19 +1,34 @@
 import React from 'react';
-import Box from '@material-ui/core/Box';
+import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 
+const useStyles = makeStyles((theme) => ({
+  root: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  textField: {
+    margin: theme.spacing(1),
+    width: '25ch',
+  },
+}));
+
 export default function GuessForm() {
+  const classes = useStyles();
+
   return (
-    <Box alignContent="center">
+    <div className={classes.root}>
       <form>
         <div>
           <TextField
+            className={classes.textField}
             id="firstName"
             label="First Name"
             type="text"
             variant="outlined"
           />
           <TextField
+            className={classes.textField}
             id="lastName"
             label="Last Name"
             type="text"
@@ -22,12 +37,14 @@ export default function GuessForm() {
         </div>
         <div>
           <TextField
+            className={classes.textField}
             id="firstName"
             label="First Name"
             type="text"
             variant="outlined"
           />
           <TextField
+            className={classes.textField}
             id="lastName"
             label="Last Name"
             type="text"
@@ -35,6 +52,6 @@ export default function GuessForm() {
           />
         </div>
       </form>
-    </Box>
+    </div>
   );
 }
