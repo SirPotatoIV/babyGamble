@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { firestore } from '../Firebase';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import TextField from '@material-ui/core/TextField';
@@ -25,6 +26,15 @@ export default function GuessForm() {
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const classes = useStyles();
+
+  async function handleSubmitGuess(event) {
+    event.preventDefault();
+    console.log('Submit Occurred');
+    const guess = { firstName, lastName, email };
+    const response = await firestore.collection('guesses').add(guess);
+
+    console.log(response);
+  }
 
   return (
     <Container className={classes.root}>
@@ -67,7 +77,12 @@ export default function GuessForm() {
             value={email}
           />
         </div>
-        <Button variant="contained" color="primary" endIcon={<Icon>send</Icon>}>
+        <Button
+          onClick={(event) => handleSubmitGuess(event)}
+          variant="contained"
+          color="primary"
+          endIcon={<Icon>send</Icon>}
+        >
           Submit Guess
         </Button>
       </form>
