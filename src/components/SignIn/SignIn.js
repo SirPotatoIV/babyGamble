@@ -27,7 +27,7 @@ export default function SignIn() {
   const classes = useStyles();
 
   const handleSignIn = () => console.log(email, password);
-  const handleSignInWithGoogle = () => signInWithGoogle;
+  // const handleSignInWithGoogle = () => signInWithGoogle;
 
   return (
     <div className={classes.SignInForm}>
@@ -65,7 +65,7 @@ export default function SignIn() {
                 Sign in
               </Button>
               <Button
-                onClick={(event) => handleSignInWithGoogle()}
+                onClick={(event) => signInWithGoogle}
                 label="Sign in with Google"
                 variant="contained"
                 color="secondary"
