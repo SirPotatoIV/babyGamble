@@ -22,6 +22,6 @@ const auth = firebase.auth();
 
 // Export apps needed for authenticaiton with Firebase
 const provider = new firebase.auth.GoogleAuthProvider();
-const signInWithGoogle = () => auth.signInWithRedirect(provider);
+const signInWithGoogle = () => auth.signInWithPopup(provider);
 
 export { firebase, firestore, signInWithGoogle };
