@@ -65,7 +65,7 @@ export default function SignIn() {
                 Sign in
               </Button>
               <Button
-                onClick={(event) => signInWithGoogle}
+                onClick={() => signInWithGoogle}
                 label="Sign in with Google"
                 variant="contained"
                 color="secondary"
