@@ -30,7 +30,7 @@ export default function GuessForm() {
   async function handleSubmitGuess(event) {
     event.preventDefault();
     // taking data from currentUser and storing it with the guess
-    const { displayName, email: userEmail, uid } = auth.currentUser;
+    const { displayName, email: userEmail, uid } = auth?.currentUser;
     // taking data from the form and storing it with the guess
     const guess = { displayName, userEmail, uid, firstName, lastName, email };
     // sending guess to database

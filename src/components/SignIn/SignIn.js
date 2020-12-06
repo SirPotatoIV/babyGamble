@@ -26,7 +26,11 @@ export default function SignIn() {
 
   const classes = useStyles();
 
-  const handleSignIn = () => console.log(email, password);
+  const handleSignIn = () => {
+    console.log(email, password);
+    setEmail('');
+    setPassword('');
+  };
 
   return (
     <div className={classes.SignInForm}>
