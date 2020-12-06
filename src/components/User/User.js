@@ -21,11 +21,11 @@ const User = () => {
   }, []);
 
   return (
-    !!user && (
+    !!user?.user && (
       <Container>
         <div>user: {user.user.displayName}</div>
         <div>email: {user.user.email}</div>
-        <Button>Sign out</Button>
+        <Button onClick={() => auth.signOut()}>Sign out</Button>
       </Container>
     )
   );

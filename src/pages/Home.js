@@ -13,9 +13,9 @@ export default function Home() {
       <Typography variant="h1" align="center">
         Home
       </Typography>
+      <User />
       <SignIn />
       <SignUp />
-      <User />
     </Box>
   );
 }
