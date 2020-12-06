@@ -26,21 +26,7 @@ export default function Home() {
       <Typography variant="h1" align="center">
         Home
       </Typography>
-      <Guesses />
-      <Container>
-        {!!guesses &&
-          guesses.map((guess) => {
-            return (
-              <div key={guess.id}>
-                <div>{guess.email}</div>
-                <div>
-                  {guess.firstName} {guess.lastName}
-                </div>
-                <div>{guess.hairColor}</div>
-              </div>
-            );
-          })}
-      </Container>
+      <Guesses guesses={guesses} />
     </Box>
   );
 }
