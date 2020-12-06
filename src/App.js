@@ -16,7 +16,6 @@ function App() {
   useEffect(() => {
     // Auth unsubscribe taken from Ben McMahen's article: https://dev.to/bmcmahen/using-firebase-with-react-hooks-21ap
     const unsubscribeFromAuth = auth.onAuthStateChanged((newUser) => {
-      console.log('state changed');
       return setUser({
         initializing: false,
         user: newUser,
