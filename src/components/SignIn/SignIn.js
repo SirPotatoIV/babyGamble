@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { signInWithGoogle } from '../Firebase';
+import { auth, signInWithGoogle } from '../Firebase';
 
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
@@ -26,11 +26,20 @@ export default function SignIn() {
 
   const classes = useStyles();
 
-  const handleSignIn = () => {
-    console.log(email, password);
+  async function handleSubmit() {
+    try {
+      const { user } = await auth.createUserWithEmailAndPassword(
+        email,
+        password
+      );
+    } catch (error) {
+      console.error(error);
+    }
+
     setEmail('');
     setPassword('');
-  };
+    return '';
+  }
 
   return (
     <div className={classes.SignInForm}>

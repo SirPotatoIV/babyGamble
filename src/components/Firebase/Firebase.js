@@ -24,4 +24,50 @@ const auth = firebase.auth();
 const provider = new firebase.auth.GoogleAuthProvider();
 const signInWithGoogle = () => auth.signInWithPopup(provider);
 
-export { firebase, firestore, auth, signInWithGoogle };
+const createUserProfileDocument = async (user, additoinalData) => {
+  // if no user, exit
+  if (!user) return;
+  // Get reference to the user in the database, assuming they do exist
+  const userRef = firestore.doc(`users/${user.uid}`);
+  // Go and fetch the document from the location.
+  const snapshot = await userRef.get();
+  // if a snapshot does not exist (meaning the user profile does not exist)
+  if (!snapshot.exist) {
+    const createdAt = new Date();
+    const { displayName, email } = user;
+    try {
+      await userRef.set({
+        displayName,
+        email,
+        createdAt,
+        ...additoinalData,
+      });
+    } catch (error) {
+      console.error('Error creating user', error);
+    }
+    // When a user profile has to be created, also get the user document and return it.
+    return getUserDocument(user.id);
+  }
+};
+
+const getUserDocument = async (uid) => {
+  // if no uid, exit
+  if (!uid) {
+    return null;
+  }
+  try {
+    const userDocument = await firestore.collection('users').doc(uid).get();
+    return { uid, ...userDocument.data() };
+  } catch (error) {
+    console.error('Error fetching the user', error.message);
+  }
+};
+
+export {
+  firebase,
+  firestore,
+  auth,
+  signInWithGoogle,
+  createUserProfileDocument,
+  getUserDocument,
+};
