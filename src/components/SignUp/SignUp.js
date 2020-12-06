@@ -23,6 +23,7 @@ const useStyles = makeStyles({
 export default function SignUp() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [displayName, setDisplayName] = useState('');
 
   const classes = useStyles();
 
@@ -51,6 +52,15 @@ export default function SignUp() {
         </Grid>
         <Grid item xs={12}>
           <form>
+            <TextField
+              onChange={(event) => setDisplayName(event.target.value)}
+              required
+              id="signUpDisplayName"
+              label="Display Name"
+              variant="outlined"
+              type="text"
+              value={displayName}
+            />
             <TextField
               onChange={(event) => setEmail(event.target.value)}
               required
