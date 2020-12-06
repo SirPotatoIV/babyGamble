@@ -19,14 +19,12 @@ const useStyles = makeStyles({
 });
 
 export default function SignUp() {
-  const [newUser, setNewUser] = useState({
-    email: '',
-    password: '',
-  });
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
   const classes = useStyles();
-  console.log(newUser);
-  const handleChange = (event) =>
-    setNewUser({ [event.target.id]: event.target.value });
+
+  const handleSignUp = () => console.log(email, password);
 
   return (
     <div className={classes.signUpForm}>
@@ -37,23 +35,30 @@ export default function SignUp() {
         <Grid item xs={12}>
           <form>
             <TextField
-              onChange={(event) => handleChange(event)}
+              onChange={(event) => setEmail(event.target.value)}
               required
               id="email"
               label="E-mail"
               variant="outlined"
               type="email"
+              value={email}
             />
             <TextField
-              onChange={(event) => handleChange(event)}
+              onChange={(event) => setPassword(event.target.value)}
               required
               id="password"
               label="Password"
               variant="outlined"
               type="password"
+              value={password}
             />
             <Grid item xs={12}>
-              <Button label="Sign up" variant="contained" color="primary">
+              <Button
+                onClick={(event) => handleSignUp()}
+                label="Sign up"
+                variant="contained"
+                color="primary"
+              >
                 Sign up
               </Button>
             </Grid>
