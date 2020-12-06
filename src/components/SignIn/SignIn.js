@@ -15,6 +15,7 @@ const useStyles = makeStyles({
     border: '2px solid black',
     borderRadius: '10px',
     padding: '10px',
+    margin: '10px',
   },
 });
 
@@ -25,6 +26,7 @@ export default function SignIn() {
   const classes = useStyles();
 
   const handleSignIn = () => console.log(email, password);
+  const handleSignInWithGoogle = () => console.log('Signing in with Google');
 
   return (
     <div className={classes.SignInForm}>
@@ -55,11 +57,19 @@ export default function SignIn() {
             <Grid item xs={12}>
               <Button
                 onClick={(event) => handleSignIn()}
-                label="Sign up"
+                label="Sign in"
                 variant="contained"
                 color="primary"
               >
                 Sign in
+              </Button>
+              <Button
+                onClick={(event) => handleSignInWithGoogle()}
+                label="Sign in with Google"
+                variant="contained"
+                color="secondary"
+              >
+                Sign in with Google
               </Button>
             </Grid>
           </form>

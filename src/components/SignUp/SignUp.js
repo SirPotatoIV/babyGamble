@@ -15,6 +15,7 @@ const useStyles = makeStyles({
     border: '2px solid black',
     borderRadius: '10px',
     padding: '10px',
+    margin: '10px',
   },
 });
 
