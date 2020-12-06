@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { auth, createUserProfileDocument } from '../Firebase';
 
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
@@ -31,6 +32,8 @@ export default function SignUp() {
         email,
         password
       );
+
+      createUserProfileDocument(user);
     } catch (error) {
       console.error(error);
     }

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { auth } from './components/Firebase';
+import { auth, createUserProfileDocument } from './components/Firebase';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import About from './pages/About';
 import Guess from './pages/Guess';
@@ -15,12 +15,17 @@ function App() {
 
   useEffect(() => {
     // Auth unsubscribe taken from Ben McMahen's article: https://dev.to/bmcmahen/using-firebase-with-react-hooks-21ap
-    const unsubscribeFromAuth = auth.onAuthStateChanged((newUser) => {
-      return setUser({
-        initializing: false,
-        user: newUser,
-      });
-    });
+    const unsubscribeFromAuth = auth.onAuthStateChanged(
+      async (loggedInUser) => {
+        // If profile already exists, then it returns the user profile
+        const userProfile = createUserProfileDocument(loggedInUser);
+
+        return setUser({
+          initializing: false,
+          user: userProfile,
+        });
+      }
+    );
 
     return () => unsubscribeFromAuth();
   }, []);
