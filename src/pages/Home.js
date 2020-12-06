@@ -3,7 +3,6 @@ import { firestore, collectIdsAndDocs } from '../components/Firebase';
 
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
-import Container from '@material-ui/core/Container';
 import Guesses from '../components/Guesses';
 
 export default function Home() {
@@ -15,9 +14,7 @@ export default function Home() {
 
   async function getGuesses() {
     const snapshots = await firestore.collection('guesses').get();
-
     const userGuesses = snapshots.docs.map(collectIdsAndDocs);
-
     setGuesses(userGuesses);
   }
 
