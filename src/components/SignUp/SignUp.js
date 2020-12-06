@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
@@ -19,7 +19,14 @@ const useStyles = makeStyles({
 });
 
 export default function SignUp() {
+  const [newUser, setNewUser] = useState({
+    email: '',
+    password: '',
+  });
   const classes = useStyles();
+  console.log(newUser);
+  const handleChange = (event) =>
+    setNewUser({ [event.target.id]: event.target.value });
 
   return (
     <div className={classes.signUpForm}>
@@ -30,6 +37,7 @@ export default function SignUp() {
         <Grid item xs={12}>
           <form>
             <TextField
+              onChange={(event) => handleChange(event)}
               required
               id="email"
               label="E-mail"
@@ -37,9 +45,10 @@ export default function SignUp() {
               type="email"
             />
             <TextField
+              onChange={(event) => handleChange(event)}
               required
               id="password"
-              label="password"
+              label="Password"
               variant="outlined"
               type="password"
             />
