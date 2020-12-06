@@ -4,6 +4,7 @@ import { firestore, collectIdsAndDocs } from '../components/Firebase';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
+import Guesses from '../components/Guesses';
 
 export default function Home() {
   const [guesses, setGuesses] = useState([]);
@@ -25,6 +26,7 @@ export default function Home() {
       <Typography variant="h1" align="center">
         Home
       </Typography>
+      <Guesses />
       <Container>
         {!!guesses &&
           guesses.map((guess) => {
