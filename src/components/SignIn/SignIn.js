@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { signInWithGoogle } from '../Firebase';
 
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
@@ -26,7 +27,7 @@ export default function SignIn() {
   const classes = useStyles();
 
   const handleSignIn = () => console.log(email, password);
-  const handleSignInWithGoogle = () => console.log('Signing in with Google');
+  const handleSignInWithGoogle = () => signInWithGoogle;
 
   return (
     <div className={classes.SignInForm}>
