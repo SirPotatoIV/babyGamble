@@ -38,7 +38,7 @@ export default function SignUp() {
             <TextField
               onChange={(event) => setEmail(event.target.value)}
               required
-              id="email"
+              id="signUpEmail"
               label="E-mail"
               variant="outlined"
               type="email"
@@ -47,7 +47,7 @@ export default function SignUp() {
             <TextField
               onChange={(event) => setPassword(event.target.value)}
               required
-              id="password"
+              id="signUpPassword"
               label="Password"
               variant="outlined"
               type="password"
