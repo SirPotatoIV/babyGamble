@@ -25,7 +25,7 @@ function App() {
         });
       }
     );
-
+    // Clean up for when we no longer need to listen to changes to auth
     return () => unsubscribeFromAuth();
   }, []);
 

@@ -7,7 +7,10 @@ const GuessesProvider = ({ children }) => {
   const [guesses, setGuesses] = useState([]);
 
   useEffect(() => {
-    getGuesses();
+    const unsubscribeFromGuesses = await  firestore.collection('guesses').get();
+    
+    // clean up step for when we no longer need to be listening for updates to guesses
+    return () => unsubscribeFromGuesses();
   }, []);
 
   async function getGuesses() {
