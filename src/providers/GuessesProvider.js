@@ -1,9 +1,9 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, createContext } from 'react';
 import { firestore, collectIdsAndDocs } from '../components/Firebase';
 
 const GuessesContext = createContext();
 
-const GuessesProvider = () => {
+const GuessesProvider = ({ children }) => {
   const [guesses, setGuesses] = useState([]);
 
   useEffect(() => {
@@ -16,5 +16,11 @@ const GuessesProvider = () => {
     setGuesses(userGuesses);
   }
 
-  return <GuessesContext.Provider value={guesses}></GuessesContext.Provider>;
+  return (
+    <GuessesContext.Provider value={guesses}>
+      {children}
+    </GuessesContext.Provider>
+  );
 };
+
+export default GuessesProvider;
