@@ -26,20 +26,9 @@ export default function SignIn() {
 
   const classes = useStyles();
 
-  async function handleSubmit() {
-    try {
-      const { user } = await auth.createUserWithEmailAndPassword(
-        email,
-        password
-      );
-    } catch (error) {
-      console.error(error);
-    }
-
-    setEmail('');
-    setPassword('');
-    return '';
-  }
+  const handleSignIn = () => {
+    console.log('signed in');
+  };
 
   return (
     <div className={classes.SignInForm}>

@@ -25,7 +25,20 @@ export default function SignUp() {
 
   const classes = useStyles();
 
-  const handleSignUp = () => console.log(email, password);
+  async function handleSignUp() {
+    try {
+      const { user } = await auth.createUserWithEmailAndPassword(
+        email,
+        password
+      );
+    } catch (error) {
+      console.error(error);
+    }
+
+    setEmail('');
+    setPassword('');
+    return '';
+  }
 
   return (
     <div className={classes.signUpForm}>
