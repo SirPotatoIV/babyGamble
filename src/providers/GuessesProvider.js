@@ -1,7 +1,7 @@
 import React, { useEffect, useState, createContext } from 'react';
 import { firestore, collectIdsAndDocs } from '../components/Firebase';
 
-const GuessesContext = createContext();
+export const GuessesContext = createContext();
 
 const GuessesProvider = ({ children }) => {
   const [guesses, setGuesses] = useState([]);
