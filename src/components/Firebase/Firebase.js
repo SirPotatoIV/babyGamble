@@ -1,6 +1,8 @@
 import firebase from 'firebase/app';
 import 'firebase/firestore';
+import 'firebase/auth';
 
+// Taken from Firebase Console
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
   authDomain: process.env.REACT_APP_FIREBASE_AUTHDOMAIN,
@@ -11,8 +13,67 @@ const firebaseConfig = {
   measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENTID,
 };
 
+// Initialize an instance of Firebase that will be imported by other components
 firebase.initializeApp(firebaseConfig);
 
+// Export sub-apps of firebase
 const firestore = firebase.firestore();
+const auth = firebase.auth();
 
-export { firebase, firestore };
+// Export apps needed for authenticaiton with Firebase
+const provider = new firebase.auth.GoogleAuthProvider();
+const signInWithGoogle = () => auth.signInWithPopup(provider);
+const signInWithEmail = (email, password) =>
+  auth.signInWithEmailAndPassword(email, password);
+const signOut = () => auth.signOut();
+
+const createUserProfileDocument = async (user, additionalData) => {
+  // if no user, exit
+  if (!user) return;
+  // Get reference to the user in the database, assuming they do exist
+  const userRef = firestore.doc(`users/${user.uid}`);
+  // Go and fetch the document from the location.
+  const snapshot = await userRef.get();
+  // if a snapshot does not exist (meaning the user profile does not exist)
+  if (!snapshot.exists) {
+    const createdAt = new Date();
+    const { displayName, email } = user;
+    try {
+      await userRef.set({
+        displayName,
+        email,
+        createdAt,
+        ...additionalData,
+      });
+    } catch (error) {
+      console.error('Error creating user', error);
+    }
+    // When a user profile has to be created, also get the user document and return it.
+  }
+
+  return getUserDocument(user.uid);
+};
+
+const getUserDocument = async (uid) => {
+  // if no uid, exit
+  if (!uid) {
+    return null;
+  }
+  try {
+    const userDocument = await firestore.collection('users').doc(uid).get();
+    return { uid, ...userDocument.data() };
+  } catch (error) {
+    console.error('Error fetching the user', error.message);
+  }
+};
+
+export {
+  firebase,
+  firestore,
+  auth,
+  signInWithGoogle,
+  signInWithEmail,
+  signOut,
+  createUserProfileDocument,
+  getUserDocument,
+};
