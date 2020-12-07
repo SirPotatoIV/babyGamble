@@ -19,7 +19,12 @@ const UserProfile = () => {
         <Grid item xs={12}>
           <Button>Reset Password</Button>
         </Grid>
-        <Grid item xs={12}></Grid>
+        <Grid item xs={12}>
+          Added form to allow users to change their email.
+        </Grid>
+        <Grid item xs={12}>
+          Add feature for user to delete their account.
+        </Grid>
       </Grid>
     </Container>
   );
