@@ -1,24 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import { auth } from '../Firebase';
+import { UserContext } from '../../providers/UserProvider';
 
 import Container from '@material-ui/core/Container';
 import Button from '@material-ui/core/Button';
 
 const User = () => {
-  const [user, setUser] = useState();
-
-  useEffect(() => {
-    // Auth unsubscribe taken from Ben McMahen's article: https://dev.to/bmcmahen/using-firebase-with-react-hooks-21ap
-    const unsubscribeFromAuth = auth.onAuthStateChanged((newUser) => {
-      console.log('state changed');
-      return setUser({
-        initializing: false,
-        user: newUser,
-      });
-    });
-
-    return () => unsubscribeFromAuth();
-  }, []);
+  const [user, setUser] = useContext(UserContext);
 
   return (
     !!user?.user && (
