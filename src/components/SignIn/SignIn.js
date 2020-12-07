@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { auth, signInWithGoogle } from '../Firebase';
+import { signInWithEmail, signInWithGoogle } from '../Firebase';
 
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
@@ -25,10 +25,6 @@ export default function SignIn() {
   const [password, setPassword] = useState('');
 
   const classes = useStyles();
-
-  const handleSignIn = () => {
-    console.log('signed in');
-  };
 
   return (
     <div className={classes.SignInForm}>
@@ -58,7 +54,7 @@ export default function SignIn() {
             />
             <Grid item xs={12}>
               <Button
-                onClick={(event) => handleSignIn()}
+                onClick={(event) => signInWithEmail(email, password)}
                 label="Sign in"
                 variant="contained"
                 color="primary"

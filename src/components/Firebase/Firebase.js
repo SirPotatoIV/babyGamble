@@ -23,6 +23,8 @@ const auth = firebase.auth();
 // Export apps needed for authenticaiton with Firebase
 const provider = new firebase.auth.GoogleAuthProvider();
 const signInWithGoogle = () => auth.signInWithPopup(provider);
+const signInWithEmail = (email, password) =>
+  auth.signInWithEmailAndPassword(email, password);
 const signOut = () => auth.signOut();
 
 const createUserProfileDocument = async (user, additionalData) => {
@@ -70,6 +72,7 @@ export {
   firestore,
   auth,
   signInWithGoogle,
+  signInWithEmail,
   signOut,
   createUserProfileDocument,
   getUserDocument,
