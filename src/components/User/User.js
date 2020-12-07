@@ -6,13 +6,13 @@ import Container from '@material-ui/core/Container';
 import Button from '@material-ui/core/Button';
 
 const User = () => {
-  const user = useContext(UserContext);
-
+  const { userProfile } = useContext(UserContext);
+  console.log(userProfile);
   return (
-    !!user?.user && (
+    !!userProfile && (
       <Container>
-        <div>user: {user.user.displayName}</div>
-        <div>email: {user.user.email}</div>
+        <div>user: {userProfile.displayName}</div>
+        <div>email: {userProfile.email}</div>
         <Button onClick={() => signOut()}>Sign out</Button>
       </Container>
     )
