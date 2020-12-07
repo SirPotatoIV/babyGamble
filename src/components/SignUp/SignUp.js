@@ -31,7 +31,8 @@ export default function SignUp() {
     try {
       const { user } = await auth.createUserWithEmailAndPassword(
         email,
-        password
+        password,
+        displayName
       );
 
       createUserProfileDocument(user);
@@ -41,6 +42,7 @@ export default function SignUp() {
 
     setEmail('');
     setPassword('');
+    setDisplayName('');
     return '';
   }
 
