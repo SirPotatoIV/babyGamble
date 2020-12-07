@@ -14,7 +14,11 @@ const firebaseConfig = {
 };
 
 // Initialize an instance of Firebase that will be imported by other components
-firebase.initializeApp(firebaseConfig);
+try {
+  firebase.initializeApp(firebaseConfig);
+} catch (error) {
+  console.log(error);
+}
 
 // Export sub-apps of firebase
 const firestore = firebase.firestore();
@@ -23,8 +27,15 @@ const auth = firebase.auth();
 // Export apps needed for authenticaiton with Firebase
 const provider = new firebase.auth.GoogleAuthProvider();
 const signInWithGoogle = () => auth.signInWithPopup(provider);
-const signInWithEmail = (email, password) =>
-  auth.signInWithEmailAndPassword(email, password);
+const signInWithEmail = async (email, password) => {
+  try {
+    await auth.signInWithEmailAndPassword(email, password);
+  } catch (error) {
+    console.log('an error occurred logging in with email.', error.message);
+    return error.code;
+  }
+};
+
 const signOut = () => auth.signOut();
 
 const createUserProfileDocument = async (user, additionalData) => {
