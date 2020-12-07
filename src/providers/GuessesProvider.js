@@ -1,4 +1,4 @@
-import React, { useState, createContext } from 'react';
+import React, { useEffect, useState, createContext } from 'react';
 import { firestore, collectIdsAndDocs } from '../components/Firebase';
 
 const GuessesContext = createContext();
