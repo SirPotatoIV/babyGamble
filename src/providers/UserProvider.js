@@ -10,7 +10,6 @@ const UserProvider = ({ children }) => {
     // Auth unsubscribe taken from Ben McMahen's article: https://dev.to/bmcmahen/using-firebase-with-react-hooks-21ap
     const unsubscribeFromAuth = auth.onAuthStateChanged(
       async (loggedInUser) => {
-        console.log('current user', loggedInUser);
         // If profile already exists, then it returns the user profile
         const userProfile = await createUserProfileDocument(loggedInUser);
         setUser({ userProfile });

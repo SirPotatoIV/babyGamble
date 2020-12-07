@@ -7,7 +7,7 @@ import Button from '@material-ui/core/Button';
 
 const User = () => {
   const { userProfile } = useContext(UserContext);
-  console.log(userProfile);
+
   return (
     !!userProfile && (
       <Container>
