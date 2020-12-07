@@ -1,6 +1,7 @@
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
+import { authErrorCodeMessage } from './utils';
 
 // Taken from Firebase Console
 const firebaseConfig = {
@@ -32,7 +33,7 @@ const signInWithEmail = async (email, password) => {
     await auth.signInWithEmailAndPassword(email, password);
   } catch (error) {
     console.log('an error occurred logging in with email.', error.message);
-    return error.code;
+    return authErrorCodeMessage(error.code);
   }
 };
 
