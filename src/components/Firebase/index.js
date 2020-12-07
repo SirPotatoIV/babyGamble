@@ -3,6 +3,7 @@ import {
   firestore,
   auth,
   signInWithGoogle,
+  signOut,
   createUserProfileDocument,
   getUserDocument,
 } from './Firebase.js';
@@ -14,6 +15,7 @@ export {
   firestore,
   auth,
   signInWithGoogle,
+  signOut,
   collectIdsAndDocs,
   createUserProfileDocument,
   getUserDocument,

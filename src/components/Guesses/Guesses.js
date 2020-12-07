@@ -4,7 +4,7 @@ import { GuessesContext } from '../../providers/GuessesProvider';
 import Container from '@material-ui/core/Container';
 
 const Guesses = () => {
-  const [guesses] = useContext(GuessesContext);
+  const guesses = useContext(GuessesContext);
 
   return (
     <Container>

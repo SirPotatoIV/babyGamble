@@ -23,8 +23,9 @@ const auth = firebase.auth();
 // Export apps needed for authenticaiton with Firebase
 const provider = new firebase.auth.GoogleAuthProvider();
 const signInWithGoogle = () => auth.signInWithPopup(provider);
+const signOut = () => auth.signOut();
 
-const createUserProfileDocument = async (user, additoinalData) => {
+const createUserProfileDocument = async (user, additionalData) => {
   // if no user, exit
   if (!user) return;
   // Get reference to the user in the database, assuming they do exist
@@ -40,17 +41,18 @@ const createUserProfileDocument = async (user, additoinalData) => {
         displayName,
         email,
         createdAt,
-        ...additoinalData,
+        ...additionalData,
       });
     } catch (error) {
       console.error('Error creating user', error);
     }
     // When a user profile has to be created, also get the user document and return it.
-    return getUserDocument(user.id);
+    return getUserDocument(user.uid);
   }
 };
 
 const getUserDocument = async (uid) => {
+  console.log('getting user document', uid);
   // if no uid, exit
   if (!uid) {
     return null;
@@ -68,6 +70,7 @@ export {
   firestore,
   auth,
   signInWithGoogle,
+  signOut,
   createUserProfileDocument,
   getUserDocument,
 };
