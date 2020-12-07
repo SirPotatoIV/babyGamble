@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import AppBar from '@material-ui/core/AppBar';
-// import Button from '@material-ui/core/Button';
-// import Toolbar from '@material-ui/core/Toolbar';
+import Button from '@material-ui/core/Button';
 import Tab from '@material-ui/core/Tab';
 import Tabs from '@material-ui/core/Tabs';
 
@@ -37,6 +36,13 @@ export default function NavBar() {
             component={Link}
             to="/about"
             label="About"
+          />
+          <Tab
+            onClick={() => handleClick(3)}
+            value={3}
+            component={Link}
+            to="/profile"
+            label="Profile"
           />
         </Tabs>
       </AppBar>

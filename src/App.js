@@ -17,13 +17,15 @@ function App() {
       <UserProvider>
         <GuessesProvider>
           <Navbar />
-          <UserProfile />
           <Switch>
             <Route path="/about">
               <About />
             </Route>
             <Route path="/guess">
               <Guess />
+            </Route>
+            <Route exact path="/profile">
+              <UserProfile />
             </Route>
             <Route path="/">
               <Home />
