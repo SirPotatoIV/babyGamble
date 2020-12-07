@@ -23,6 +23,10 @@ const useStyles = makeStyles({
 export default function SignIn() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [authError, setAuthError] = useState({
+    isPresent: false,
+    message: '',
+  });
 
   const classes = useStyles();
 
@@ -33,6 +37,9 @@ export default function SignIn() {
           <Typography variant="h2">Sign in</Typography>
         </Grid>
         <Grid item xs={12}>
+          {authError.isPresent && (
+            <Typography variant="h5">{authError.message}</Typography>
+          )}
           <form>
             <TextField
               onChange={(event) => setEmail(event.target.value)}
@@ -54,7 +61,14 @@ export default function SignIn() {
             />
             <Grid item xs={12}>
               <Button
-                onClick={(event) => signInWithEmail(email, password)}
+                onClick={() => {
+                  const response = signInWithEmail(email, password);
+                  if (response.isError)
+                    setAuthError({
+                      isPresent: true,
+                      message: response.message,
+                    });
+                }}
                 label="Sign in"
                 variant="contained"
                 color="primary"

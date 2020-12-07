@@ -32,7 +32,7 @@ const signInWithEmail = async (email, password) => {
   try {
     await auth.signInWithEmailAndPassword(email, password);
   } catch (error) {
-    console.log('an error occurred logging in with email.', error.message);
+    console.error(error.message);
     return authErrorCodeMessage(error.code);
   }
 };

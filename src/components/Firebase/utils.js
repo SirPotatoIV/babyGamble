@@ -17,5 +17,5 @@ export const authErrorCodeMessage = (errorCode) => {
       break;
   }
 
-  return errorMessage;
+  return { isError: true, message: errorMessage };
 };
