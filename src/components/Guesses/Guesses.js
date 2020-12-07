@@ -1,20 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import { firestore, collectIdsAndDocs } from '../Firebase';
+import React, { useState } from 'react';
 
 import Container from '@material-ui/core/Container';
 
 const Guesses = () => {
   const [guesses, setGuesses] = useState([]);
-
-  useEffect(() => {
-    getGuesses();
-  }, []);
-
-  async function getGuesses() {
-    const snapshots = await firestore.collection('guesses').get();
-    const userGuesses = snapshots.docs.map(collectIdsAndDocs);
-    setGuesses(userGuesses);
-  }
 
   return (
     <Container>
