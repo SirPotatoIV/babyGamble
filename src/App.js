@@ -3,6 +3,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import About from './pages/About';
 import Guess from './pages/Guess';
 import Home from './pages/Home';
+import UserProfile from './components/UserProfile';
 
 import UserProvider from './providers/UserProvider';
 import GuessesProvider from './providers/GuessesProvider';
@@ -16,6 +17,7 @@ function App() {
       <UserProvider>
         <GuessesProvider>
           <Navbar />
+          <UserProfile />
           <Switch>
             <Route path="/about">
               <About />
