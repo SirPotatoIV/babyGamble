@@ -1,10 +1,10 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import { GuessesContext } from '../../providers/GuessesProvider';
 
 import Container from '@material-ui/core/Container';
 
 const Guesses = () => {
-  const [guesses, setGuesses] = useContext(GuessesContext);
+  const [guesses] = useContext(GuessesContext);
 
   return (
     <Container>
