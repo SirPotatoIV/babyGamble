@@ -2,23 +2,22 @@ import {
   firebase,
   firestore,
   auth,
-  signInWithGoogle,
-  signInWithEmail,
+  googleAuthProvider,
   signOut,
   createUserProfileDocument,
   getUserDocument,
 } from './Firebase.js';
 
-import { collectIdsAndDocs } from './utils';
+import { collectIdsAndDocs, createErrorMessage } from './utils';
 
 export {
   firebase,
   firestore,
   auth,
-  signInWithGoogle,
-  signInWithEmail,
+  googleAuthProvider,
   signOut,
-  collectIdsAndDocs,
   createUserProfileDocument,
   getUserDocument,
+  collectIdsAndDocs,
+  createErrorMessage,
 };

@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
-import { auth, createUserProfileDocument } from '../Firebase';
+import {
+  auth,
+  createUserProfileDocument,
+  createErrorMessage,
+} from '../Firebase';
 
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
@@ -24,6 +28,7 @@ export default function SignUp() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [displayName, setDisplayName] = useState('');
+  const [authError, setAuthError] = useState({ isPresent: false, message: '' });
 
   const classes = useStyles();
 
@@ -31,19 +36,22 @@ export default function SignUp() {
     try {
       const { user } = await auth.createUserWithEmailAndPassword(
         email,
-        password,
-        displayName
+        password
       );
+      createUserProfileDocument(user, displayName);
 
-      createUserProfileDocument(user);
+      // Clear form
+      setEmail('');
+      setPassword('');
+      setDisplayName('');
+      setAuthError({ isPresent: false, message: '' });
     } catch (error) {
-      console.error(error);
+      // Set error
+      setAuthError({
+        isPresent: true,
+        message: createErrorMessage(error.code),
+      });
     }
-
-    setEmail('');
-    setPassword('');
-    setDisplayName('');
-    return '';
   }
 
   return (
@@ -70,6 +78,7 @@ export default function SignUp() {
               label="E-mail"
               variant="outlined"
               type="email"
+              autoComplete="username"
               value={email}
             />
             <TextField
@@ -79,11 +88,12 @@ export default function SignUp() {
               label="Password"
               variant="outlined"
               type="password"
+              autoComplete="current-password"
               value={password}
             />
             <Grid item xs={12}>
               <Button
-                onClick={(event) => handleSignUp()}
+                onClick={() => handleSignUp()}
                 label="Sign up"
                 variant="contained"
                 color="primary"
@@ -93,6 +103,11 @@ export default function SignUp() {
             </Grid>
           </form>
         </Grid>
+        {authError.isPresent && (
+          <Typography variant="subtitle1" color="error">
+            {authError.message}
+          </Typography>
+        )}
       </Grid>
     </div>
   );

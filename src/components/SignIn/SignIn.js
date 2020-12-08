@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { signInWithEmail, signInWithGoogle } from '../Firebase';
+import { auth, googleAuthProvider, createErrorMessage } from '../Firebase';
 
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
@@ -23,8 +23,44 @@ const useStyles = makeStyles({
 export default function SignIn() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [authError, setAuthError] = useState({
+    isPresent: false,
+    message: '',
+  });
 
   const classes = useStyles();
+
+  const handleSignInWithEmail = async () => {
+    try {
+      await auth.signInWithEmailAndPassword(email, password);
+      // reset form
+      setEmail('');
+      setPassword('');
+      setAuthError({ isPresent: false, message: '' });
+    } catch (error) {
+      // set error
+      setAuthError({
+        isPresent: true,
+        message: createErrorMessage(error.code),
+      });
+    }
+  };
+
+  const handleSignInWithGoogle = async () => {
+    try {
+      await auth.signInWithPopup(googleAuthProvider);
+      // reset form
+      setEmail('');
+      setPassword('');
+      setAuthError({ isPresent: false, message: '' });
+    } catch (error) {
+      // set error
+      setAuthError({
+        isPresent: true,
+        message: createErrorMessage(error.code),
+      });
+    }
+  };
 
   return (
     <div className={classes.SignInForm}>
@@ -41,6 +77,7 @@ export default function SignIn() {
               label="E-mail"
               variant="outlined"
               type="email"
+              autoComplete="username"
               value={email}
             />
             <TextField
@@ -50,11 +87,12 @@ export default function SignIn() {
               label="Password"
               variant="outlined"
               type="password"
+              autoComplete="current-password"
               value={password}
             />
             <Grid item xs={12}>
               <Button
-                onClick={(event) => signInWithEmail(email, password)}
+                onClick={() => handleSignInWithEmail()}
                 label="Sign in"
                 variant="contained"
                 color="primary"
@@ -62,7 +100,7 @@ export default function SignIn() {
                 Sign in
               </Button>
               <Button
-                onClick={() => signInWithGoogle()}
+                onClick={() => handleSignInWithGoogle()}
                 label="Sign in with Google"
                 variant="contained"
                 color="secondary"
@@ -72,6 +110,11 @@ export default function SignIn() {
             </Grid>
           </form>
         </Grid>
+        {authError.isPresent && (
+          <Typography variant="subtitle1" color="error">
+            {authError.message}
+          </Typography>
+        )}
       </Grid>
     </div>
   );
