@@ -70,6 +70,7 @@ export default function SignUp() {
               label="E-mail"
               variant="outlined"
               type="email"
+              autoComplete="username"
               value={email}
             />
             <TextField
@@ -79,11 +80,12 @@ export default function SignUp() {
               label="Password"
               variant="outlined"
               type="password"
+              autoComplete="current-password"
               value={password}
             />
             <Grid item xs={12}>
               <Button
-                onClick={(event) => handleSignUp()}
+                onClick={() => handleSignUp()}
                 label="Sign up"
                 variant="contained"
                 color="primary"

@@ -62,6 +62,7 @@ export default function SignIn() {
               label="E-mail"
               variant="outlined"
               type="email"
+              autoComplete="username"
               value={email}
             />
             <TextField
@@ -71,6 +72,7 @@ export default function SignIn() {
               label="Password"
               variant="outlined"
               type="password"
+              autoComplete="current-password"
               value={password}
             />
             <Grid item xs={12}>
