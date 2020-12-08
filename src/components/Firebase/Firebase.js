@@ -25,8 +25,7 @@ const firestore = firebase.firestore();
 const auth = firebase.auth();
 
 // Export apps needed for authenticaiton with Firebase
-const provider = new firebase.auth.GoogleAuthProvider();
-const signInWithGoogle = () => auth.signInWithPopup(provider);
+const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
 
 const signOut = () => auth.signOut();
 
@@ -74,7 +73,7 @@ export {
   firebase,
   firestore,
   auth,
-  signInWithGoogle,
+  googleAuthProvider,
   signOut,
   createUserProfileDocument,
   getUserDocument,

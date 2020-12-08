@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { auth, signInWithGoogle, createErrorMessage } from '../Firebase';
+import { auth, googleAuthProvider, createErrorMessage } from '../Firebase';
 
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
@@ -33,6 +33,22 @@ export default function SignIn() {
   const handleSignInWithEmail = async () => {
     try {
       await auth.signInWithEmailAndPassword(email, password);
+      // reset form
+      setEmail('');
+      setPassword('');
+      setAuthError({ isPresent: false, message: '' });
+    } catch (error) {
+      // set error
+      setAuthError({
+        isPresent: true,
+        message: createErrorMessage(error.code),
+      });
+    }
+  };
+
+  const handleSignInWithGoogle = async () => {
+    try {
+      await auth.signInWithPopup(googleAuthProvider);
       // reset form
       setEmail('');
       setPassword('');
@@ -84,7 +100,7 @@ export default function SignIn() {
                 Sign in
               </Button>
               <Button
-                onClick={() => signInWithGoogle()}
+                onClick={() => handleSignInWithGoogle()}
                 label="Sign in with Google"
                 variant="contained"
                 color="secondary"
