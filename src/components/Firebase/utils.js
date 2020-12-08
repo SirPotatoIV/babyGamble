@@ -9,13 +9,13 @@ export const authErrorCodeMessage = (errorCode) => {
     case 'auth/user-not-found':
       errorMessage = 'An account does not exist with this email address.';
       break;
-    case '':
+    case 'auth/wrong-password':
+      errorMessage = 'The password you entered is incorrect.';
       break;
     default:
       errorMessage =
         'Sign in is currently not working. Please try again later.';
       break;
   }
-
   return { isError: true, message: errorMessage };
 };

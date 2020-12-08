@@ -30,6 +30,23 @@ export default function SignIn() {
 
   const classes = useStyles();
 
+  const handleSignInWithEmail = async () => {
+    const response = await signInWithEmail(email, password);
+    if (response.isError) {
+      setAuthError({
+        isPresent: true,
+        message: response.message,
+      });
+    } else {
+      // clear auth error if no error
+      setAuthError('');
+    }
+
+    // reset form
+    setEmail('');
+    setPassword('');
+  };
+
   return (
     <div className={classes.SignInForm}>
       <Grid container spacing={3}>
@@ -37,9 +54,6 @@ export default function SignIn() {
           <Typography variant="h2">Sign in</Typography>
         </Grid>
         <Grid item xs={12}>
-          {authError.isPresent && (
-            <Typography variant="h5">{authError.message}</Typography>
-          )}
           <form>
             <TextField
               onChange={(event) => setEmail(event.target.value)}
@@ -61,14 +75,7 @@ export default function SignIn() {
             />
             <Grid item xs={12}>
               <Button
-                onClick={() => {
-                  const response = signInWithEmail(email, password);
-                  if (response.isError)
-                    setAuthError({
-                      isPresent: true,
-                      message: response.message,
-                    });
-                }}
+                onClick={() => handleSignInWithEmail()}
                 label="Sign in"
                 variant="contained"
                 color="primary"
@@ -86,6 +93,11 @@ export default function SignIn() {
             </Grid>
           </form>
         </Grid>
+        {authError.isPresent && (
+          <Typography variant="subtitle1" color="error">
+            {authError.message}
+          </Typography>
+        )}
       </Grid>
     </div>
   );
