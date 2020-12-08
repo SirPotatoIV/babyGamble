@@ -5,6 +5,10 @@ import Container from '@material-ui/core/Container';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Icon from '@material-ui/core/Icon';
+import FormControl from '@material-ui/core/FormControl';
+import InputLabel from '@material-ui/core/InputLabel';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -12,9 +16,12 @@ const useStyles = makeStyles((theme) => ({
     flexWrap: 'wrap',
     justifyContent: 'center',
   },
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: '120px',
+  },
   textField: {
     margin: theme.spacing(1),
-    // width: '25ch',
   },
   textFieldFull: {
     margin: theme.spacing(1),
@@ -22,6 +29,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const GuessForm = () => {
+  const [hairColor, setHairColor] = useState('');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
@@ -43,6 +51,22 @@ const GuessForm = () => {
   return (
     <Container className={classes.root}>
       <form>
+        <FormControl className={classes.formControl}>
+          <InputLabel id="hairColorLabel">Hair Color</InputLabel>
+          <Select
+            labelId="hairColorLabel"
+            id="hairColor"
+            value={hairColor}
+            onChange={(event) => setHairColor(event.target.value)}
+          >
+            <MenuItem value="brown">Brown</MenuItem>
+            <MenuItem value="blonde">Blonde</MenuItem>
+            <MenuItem value="black">Black</MenuItem>
+            <MenuItem value="red">Red</MenuItem>
+            <MenuItem value="bald">Bald</MenuItem>
+          </Select>
+        </FormControl>
+
         <div>
           <TextField
             className={classes.textField}
