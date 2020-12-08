@@ -34,8 +34,8 @@ const GuessForm = () => {
   const [sex, setSex] = useState('');
   const [hairColor, setHairColor] = useState('');
   const [eyeColor, setEyeColor] = useState('');
-  const [weight, setWeight] = useState({ pounds: '0', ounces: '0' });
-  // const [length, setLength] = useState('');
+  const [weight, setWeight] = useState({ pounds: '', ounces: '' });
+  const [length, setLength] = useState('');
   // const [date, setDate] = useState('');
   // const [time, setTime] = useState('');
 
@@ -108,12 +108,10 @@ const GuessForm = () => {
           </FormControl>
         </div>
         <div className={classes.textField}>
-          <Typography variant="h6">Weight</Typography>
           <TextField
-            className={classes.textField}
             id="pounds"
             type="number"
-            label="Pounds"
+            label="Weight (lbs)"
             onChange={(event) => {
               console.log(event.target.value);
               setWeight({ ...weight, pounds: event.target.value });
@@ -121,14 +119,23 @@ const GuessForm = () => {
             value={weight.pounds}
           />
           <TextField
-            className={classes.textField}
             id="ounces"
             type="number"
-            label="Ounces"
+            label="Weight (oz)"
             onChange={(event) =>
               setWeight({ ...weight, ounces: event.target.value })
             }
             value={weight.ounces}
+          />
+        </div>
+        <div>
+          <TextField
+            className={classes.textField}
+            id="length"
+            type="number"
+            label="Length (inches)"
+            onChange={(event) => setLength(event.target.value)}
+            value={length}
           />
         </div>
         <Button
