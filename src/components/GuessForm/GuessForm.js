@@ -36,9 +36,7 @@ const GuessForm = () => {
   const [sex, setSex] = useState('');
   const [hairColor, setHairColor] = useState('');
   const [eyeColor, setEyeColor] = useState('');
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [email, setEmail] = useState('');
+
   const classes = useStyles();
 
   const handleSubmitGuess = async (event) => {
@@ -46,7 +44,7 @@ const GuessForm = () => {
     // taking data from currentUser and storing it with the guess
     const { displayName, email: userEmail, uid } = auth?.currentUser;
     // taking data from the form and storing it with the guess
-    const guess = { displayName, userEmail, uid, firstName, lastName, email };
+    const guess = { displayName, userEmail, uid, sex, hairColor, eyeColor };
     // sending guess to database
     const docRef = await firestore.collection('guesses').add(guess);
     const document = await docRef.get();
@@ -107,44 +105,6 @@ const GuessForm = () => {
               <MenuItem value="bald">Bald</MenuItem>
             </Select>
           </FormControl>
-        </div>
-        <div>
-          <TextField
-            className={classes.textField}
-            id="firstName"
-            label="First Name"
-            type="text"
-            variant="outlined"
-            onChange={(event) => {
-              setFirstName(event.target.value);
-            }}
-            value={firstName}
-          />
-          <TextField
-            className={classes.textField}
-            id="lastName"
-            label="Last Name"
-            type="text"
-            variant="outlined"
-            onChange={(event) => {
-              setLastName(event.target.value);
-            }}
-            value={lastName}
-          />
-        </div>
-        <div>
-          <TextField
-            className={classes.textFieldFull}
-            fullWidth
-            id="email"
-            label="E-mail"
-            type="email"
-            variant="outlined"
-            onChange={(event) => {
-              setEmail(event.target.value);
-            }}
-            value={email}
-          />
         </div>
         <Button
           onClick={(event) => handleSubmitGuess(event)}
