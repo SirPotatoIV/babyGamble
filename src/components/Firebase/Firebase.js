@@ -1,7 +1,6 @@
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
-import { authErrorCodeMessage } from './utils';
 
 // Taken from Firebase Console
 const firebaseConfig = {
@@ -28,14 +27,6 @@ const auth = firebase.auth();
 // Export apps needed for authenticaiton with Firebase
 const provider = new firebase.auth.GoogleAuthProvider();
 const signInWithGoogle = () => auth.signInWithPopup(provider);
-const signInWithEmail = async (email, password) => {
-  try {
-    await auth.signInWithEmailAndPassword(email, password);
-  } catch (error) {
-    console.error(error.message);
-    return authErrorCodeMessage(error.code);
-  }
-};
 
 const signOut = () => auth.signOut();
 
@@ -84,7 +75,6 @@ export {
   firestore,
   auth,
   signInWithGoogle,
-  signInWithEmail,
   signOut,
   createUserProfileDocument,
   getUserDocument,

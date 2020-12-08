@@ -17,5 +17,5 @@ export const authErrorCodeMessage = (errorCode) => {
         'Sign in is currently not working. Please try again later.';
       break;
   }
-  return { isError: true, message: errorMessage };
+  return errorMessage;
 };

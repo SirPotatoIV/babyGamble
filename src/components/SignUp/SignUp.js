@@ -28,7 +28,7 @@ export default function SignUp() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [displayName, setDisplayName] = useState('');
-  const [authError, setAuthError] = useState('');
+  const [authError, setAuthError] = useState({ isPresent: false, message: '' });
 
   const classes = useStyles();
 
@@ -38,17 +38,14 @@ export default function SignUp() {
         email,
         password
       );
-
       createUserProfileDocument(user, displayName);
     } catch (error) {
       setAuthError(authErrorCodeMessage(error.code));
-      console.log(authError);
     }
 
     setEmail('');
     setPassword('');
     setDisplayName('');
-    return '';
   }
 
   return (
@@ -100,6 +97,11 @@ export default function SignUp() {
             </Grid>
           </form>
         </Grid>
+        {authError.isPresent && (
+          <Typography variant="subtitle1" color="error">
+            {authError.message}
+          </Typography>
+        )}
       </Grid>
     </div>
   );
