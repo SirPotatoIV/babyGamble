@@ -8,7 +8,7 @@ import {
   getUserDocument,
 } from './Firebase.js';
 
-import { collectIdsAndDocs, authErrorCodeMessage } from './utils';
+import { collectIdsAndDocs, createErrorMessage } from './utils';
 
 export {
   firebase,
@@ -19,5 +19,5 @@ export {
   createUserProfileDocument,
   getUserDocument,
   collectIdsAndDocs,
-  authErrorCodeMessage,
+  createErrorMessage,
 };

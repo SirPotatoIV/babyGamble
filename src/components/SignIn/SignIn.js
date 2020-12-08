@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { auth, signInWithGoogle, authErrorCodeMessage } from '../Firebase';
+import { auth, signInWithGoogle, createErrorMessage } from '../Firebase';
 
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
@@ -34,10 +34,14 @@ export default function SignIn() {
     try {
       await auth.signInWithEmailAndPassword(email, password);
     } catch (error) {
-      console.error(error.message);
-      setAuthError(authErrorCodeMessage(error.code));
+      setAuthError(createErrorMessage(error.code));
     }
-
+    if (!authError.isPresent) {
+      setAuthError({
+        isPresent: true,
+        message: { isPresent: false, message: '' },
+      });
+    }
     // reset form
     setEmail('');
     setPassword('');

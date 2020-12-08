@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import {
   auth,
   createUserProfileDocument,
-  authErrorCodeMessage,
+  createErrorMessage,
 } from '../Firebase';
 
 import Button from '@material-ui/core/Button';
@@ -40,7 +40,14 @@ export default function SignUp() {
       );
       createUserProfileDocument(user, displayName);
     } catch (error) {
-      setAuthError(authErrorCodeMessage(error.code));
+      setAuthError({
+        isPresent: true,
+        message: createErrorMessage(error.code),
+      });
+    }
+
+    if (!authError.isPresent) {
+      setAuthError({ isPresent: false, message: '' });
     }
 
     setEmail('');

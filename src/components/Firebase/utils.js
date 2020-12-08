@@ -3,7 +3,7 @@ export const collectIdsAndDocs = (doc) => {
 };
 
 // Firebase returns a full error message, but I wanted to include my own interruptations of the error.
-export const authErrorCodeMessage = (errorCode) => {
+export const createErrorMessage = (errorCode) => {
   let errorMessage = '';
   switch (errorCode) {
     case 'auth/user-not-found':
