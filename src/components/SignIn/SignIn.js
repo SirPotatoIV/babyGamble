@@ -33,18 +33,17 @@ export default function SignIn() {
   const handleSignInWithEmail = async () => {
     try {
       await auth.signInWithEmailAndPassword(email, password);
+      // reset form
+      setEmail('');
+      setPassword('');
+      setAuthError({ isPresent: false, message: '' });
     } catch (error) {
-      setAuthError(createErrorMessage(error.code));
-    }
-    if (!authError.isPresent) {
+      // set error
       setAuthError({
         isPresent: true,
-        message: { isPresent: false, message: '' },
+        message: createErrorMessage(error.code),
       });
     }
-    // reset form
-    setEmail('');
-    setPassword('');
   };
 
   return (

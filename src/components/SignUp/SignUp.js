@@ -39,20 +39,19 @@ export default function SignUp() {
         password
       );
       createUserProfileDocument(user, displayName);
+
+      // Clear form
+      setEmail('');
+      setPassword('');
+      setDisplayName('');
+      setAuthError({ isPresent: false, message: '' });
     } catch (error) {
+      // Set error
       setAuthError({
         isPresent: true,
         message: createErrorMessage(error.code),
       });
     }
-
-    if (!authError.isPresent) {
-      setAuthError({ isPresent: false, message: '' });
-    }
-
-    setEmail('');
-    setPassword('');
-    setDisplayName('');
   }
 
   return (

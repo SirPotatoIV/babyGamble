@@ -12,10 +12,14 @@ export const createErrorMessage = (errorCode) => {
     case 'auth/wrong-password':
       errorMessage = 'The password you entered is incorrect.';
       break;
+    case 'auth/email-already-in-use':
+      errorMessage = 'The e-mail address you entered is already registered.';
+      break;
     default:
       errorMessage =
-        'Sign in is currently not working. Please try again later.';
+        'Sign in/Sign Up is currently not working. Please try again later.';
       break;
   }
+  console.log(errorCode, errorMessage);
   return errorMessage;
 };
