@@ -13,6 +13,7 @@ import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
+import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -27,16 +28,18 @@ const useStyles = makeStyles((theme) => ({
   textField: {
     margin: theme.spacing(1),
   },
-  textFieldFull: {
-    margin: theme.spacing(1),
-  },
 }));
 
 const GuessForm = () => {
   const [sex, setSex] = useState('');
   const [hairColor, setHairColor] = useState('');
   const [eyeColor, setEyeColor] = useState('');
+  const [weight, setWeight] = useState({ pounds: '0', ounces: '0' });
+  // const [length, setLength] = useState('');
+  // const [date, setDate] = useState('');
+  // const [time, setTime] = useState('');
 
+  console.log(weight);
   const classes = useStyles();
 
   const handleSubmitGuess = async (event) => {
@@ -88,8 +91,6 @@ const GuessForm = () => {
               <MenuItem value="red">Hazel</MenuItem>
             </Select>
           </FormControl>
-        </div>
-        <div>
           <FormControl className={classes.formControl}>
             <InputLabel id="hairColorLabel">Hair Color</InputLabel>
             <Select
@@ -105,6 +106,30 @@ const GuessForm = () => {
               <MenuItem value="bald">Bald</MenuItem>
             </Select>
           </FormControl>
+        </div>
+        <div className={classes.textField}>
+          <Typography variant="h6">Weight</Typography>
+          <TextField
+            className={classes.textField}
+            id="pounds"
+            type="number"
+            label="Pounds"
+            onChange={(event) => {
+              console.log(event.target.value);
+              setWeight({ ...weight, pounds: event.target.value });
+            }}
+            value={weight.pounds}
+          />
+          <TextField
+            className={classes.textField}
+            id="ounces"
+            type="number"
+            label="Ounces"
+            onChange={(event) =>
+              setWeight({ ...weight, ounces: event.target.value })
+            }
+            value={weight.ounces}
+          />
         </div>
         <Button
           onClick={(event) => handleSubmitGuess(event)}
