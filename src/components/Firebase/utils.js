@@ -20,6 +20,6 @@ export const createErrorMessage = (errorCode) => {
         'Sign in/Sign Up is currently not working. Please try again later.';
       break;
   }
-  console.log(errorCode, errorMessage);
+
   return errorMessage;
 };
