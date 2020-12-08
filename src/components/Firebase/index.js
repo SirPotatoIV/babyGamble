@@ -9,7 +9,7 @@ import {
   getUserDocument,
 } from './Firebase.js';
 
-import { collectIdsAndDocs } from './utils';
+import { collectIdsAndDocs, authErrorCodeMessage } from './utils';
 
 export {
   firebase,
@@ -18,7 +18,8 @@ export {
   signInWithGoogle,
   signInWithEmail,
   signOut,
-  collectIdsAndDocs,
   createUserProfileDocument,
   getUserDocument,
+  collectIdsAndDocs,
+  authErrorCodeMessage,
 };

@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
-import { auth, createUserProfileDocument } from '../Firebase';
+import {
+  auth,
+  createUserProfileDocument,
+  authErrorCodeMessage,
+} from '../Firebase';
 
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
@@ -24,6 +28,7 @@ export default function SignUp() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [displayName, setDisplayName] = useState('');
+  const [authError, setAuthError] = useState('');
 
   const classes = useStyles();
 
@@ -36,7 +41,8 @@ export default function SignUp() {
 
       createUserProfileDocument(user, displayName);
     } catch (error) {
-      console.error(error);
+      setAuthError(authErrorCodeMessage(error.code));
+      console.log(authError);
     }
 
     setEmail('');
