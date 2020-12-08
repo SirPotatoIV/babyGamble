@@ -11,7 +11,7 @@ export default function Guess() {
         Guess
       </Typography>
       <GuessForm />
-      <Guesses />
+      {/* <Guesses /> */}
     </Box>
   );
 }
