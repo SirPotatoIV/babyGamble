@@ -31,11 +31,10 @@ export default function SignUp() {
     try {
       const { user } = await auth.createUserWithEmailAndPassword(
         email,
-        password,
-        displayName
+        password
       );
 
-      createUserProfileDocument(user);
+      createUserProfileDocument(user, displayName);
     } catch (error) {
       console.error(error);
     }
