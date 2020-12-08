@@ -21,13 +21,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function GuessForm() {
+const GuessForm = () => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const classes = useStyles();
 
-  async function handleSubmitGuess(event) {
+  const handleSubmitGuess = async (event) => {
     event.preventDefault();
     // taking data from currentUser and storing it with the guess
     const { displayName, email: userEmail, uid } = auth?.currentUser;
@@ -38,7 +38,7 @@ export default function GuessForm() {
     const document = await docRef.get();
 
     console.log(document.id);
-  }
+  };
 
   return (
     <Container className={classes.root}>
@@ -92,4 +92,6 @@ export default function GuessForm() {
       </form>
     </Container>
   );
-}
+};
+
+export default GuessForm;
