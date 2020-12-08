@@ -42,7 +42,7 @@ const GuessForm = () => {
 
   return (
     <Container className={classes.root}>
-      <form>
+      <form onSubmit={(event) => handleSubmitGuess(event)}>
         <div>
           <TextField
             className={classes.textField}
@@ -82,7 +82,7 @@ const GuessForm = () => {
           />
         </div>
         <Button
-          onClick={(event) => handleSubmitGuess(event)}
+          type="submit"
           variant="contained"
           color="primary"
           endIcon={<Icon>send</Icon>}
