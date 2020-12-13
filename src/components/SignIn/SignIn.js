@@ -101,16 +101,16 @@ export default function SignIn() {
               <Button
                 className={classes.button}
                 onClick={() => handleSignInWithEmail()}
-                label="Sign in"
+                label="Log in"
                 variant="contained"
                 color="primary"
               >
-                Sign in
+                Log in
               </Button>
               <Button
                 className={classes.button}
                 onClick={() => handleSignInWithGoogle()}
-                label="Sign in with Google"
+                label="Log in with Google"
                 variant="contained"
                 color="secondary"
               >
