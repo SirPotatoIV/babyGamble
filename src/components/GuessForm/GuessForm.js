@@ -7,7 +7,6 @@ import Button from '@material-ui/core/Button';
 import Icon from '@material-ui/core/Icon';
 import FormControl from '@material-ui/core/FormControl';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormLabel from '@material-ui/core/FormLabel';
 import InputLabel from '@material-ui/core/InputLabel';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -37,7 +36,8 @@ const useStyles = makeStyles((theme) => ({
     minWidth: '120px',
   },
   textField: {
-    margin: theme.spacing(1),
+    marginTop: theme.spacing(1),
+    marginBottom: theme.spacing(1),
   },
   formLabel: {
     color: 'black',
@@ -80,11 +80,10 @@ const GuessForm = () => {
     <Container className={classes.root}>
       <form>
         <div>
-          <Typography variant="h6">Birthday</Typography>
+          <Typography variant="h6">Birthday & Time</Typography>
           <DatePicker date={date} setDate={setDate} />
         </div>
         <div>
-          <Typography variant="h6">Time</Typography>
           <TimePicker time={time} setTime={setTime}></TimePicker>
         </div>
         <div>
@@ -106,6 +105,7 @@ const GuessForm = () => {
           </FormControl>
         </div>
         <div>
+          <Typography variant="h6">Hair & Eye Color</Typography>
           <FormControl className={classes.formControl}>
             <InputLabel id="eyeColorLabel">Eye Color</InputLabel>
             <Select
@@ -136,7 +136,8 @@ const GuessForm = () => {
             </Select>
           </FormControl>
         </div>
-        <div className={classes.textField}>
+        <div>
+          <Typography variant="h6">Weight & Length</Typography>
           <TextField
             id="pounds"
             type="number"
