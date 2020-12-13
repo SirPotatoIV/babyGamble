@@ -14,6 +14,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import DatePicker from './DatePicker';
+import TimePicker from './TimePicker';
 import Typography from '@material-ui/core/Typography';
 
 import { DATE_DAYS, DATE_MONTHS, DATE_YEARS } from './form_constants';
@@ -45,7 +46,10 @@ const GuessForm = () => {
     month: DATE_MONTHS[0],
     year: DATE_YEARS[0],
   });
-  const [time, setTime] = useState({ hour: '' });
+  const [time, setTime] = useState({
+    hour: TIME_HOURS,
+    minutes: TIME_MINUTES,
+  });
 
   const classes = useStyles();
 
@@ -68,6 +72,10 @@ const GuessForm = () => {
         <div>
           <Typography variant="h6">Birthday</Typography>
           <DatePicker date={date} setDate={setDate} />
+        </div>
+        <div>
+          <Typography variant="h6">Time</Typography>
+          <TimePicker time={time} setTime={setTime}></TimePicker>
         </div>
         <div>
           <FormControl component="fieldset">
