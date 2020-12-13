@@ -13,6 +13,9 @@ const UserProvider = ({ children }) => {
         // If profile already exists, then it returns the user profile
         const userProfile = await createUserProfileDocument(loggedInUser);
         setUser({ userProfile });
+      },
+      (error) => {
+        console.log(error);
       }
     );
     // Clean up for when we no longer need to listen to changes to auth

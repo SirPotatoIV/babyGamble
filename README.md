@@ -14,3 +14,7 @@ Web app for users to guess different aspects about a baby.
 - Frontend Masters Firebase with React course by Steve Kinney [link to course](https://frontendmasters.com/courses/firebase-react-v2/).
 - Using Firebase with React Hooks by Ben McMahen [link to article](https://dev.to/bmcmahen/using-firebase-with-react-hooks-21ap).
 - Brian Bartholomew's React Firebase Starter GitHub repository [link to repo](https://github.com/bcbrian/react-firebase-starter).
+
+### React-Router-Dom
+
+- Restricting a user's ability to view a page based on credentials. [link to article](https://medium.com/craft-academy/how-to-restrict-your-routes-and-links-in-react-js-now-with-hooks-12b395c1a2fe)
