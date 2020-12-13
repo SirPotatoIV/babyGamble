@@ -88,12 +88,11 @@ const GuessForm = () => {
   return (
     <Box className={classes.root}>
       {error.isPresent && (
-        <div>
-          <Typography variant="subtitle1" color="error">
-            {error.message}
-          </Typography>
-        </div>
+        <Typography variant="subtitle1" color="error">
+          {error.message}
+        </Typography>
       )}
+      <Typography variant="caption">Please fill in all fields.</Typography>
       <form
         onSubmit={(event) => {
           event.preventDefault();
