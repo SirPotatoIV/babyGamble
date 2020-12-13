@@ -13,7 +13,7 @@ import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
-import Typography from '@material-ui/core/Typography';
+import DatePicker from './DatePicker';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -36,10 +36,9 @@ const GuessForm = () => {
   const [eyeColor, setEyeColor] = useState('');
   const [weight, setWeight] = useState({ pounds: '', ounces: '' });
   const [length, setLength] = useState('');
-  // const [date, setDate] = useState('');
+  const [date, setDate] = useState('');
   // const [time, setTime] = useState('');
 
-  console.log(weight);
   const classes = useStyles();
 
   const handleSubmitGuess = async (event) => {
@@ -58,7 +57,9 @@ const GuessForm = () => {
   return (
     <Container className={classes.root}>
       <form>
-        <div></div>
+        <div>
+          <DatePicker />
+        </div>
         <div>
           <FormControl component="fieldset">
             <FormLabel component="legend">Sex</FormLabel>
