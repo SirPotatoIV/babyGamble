@@ -47,8 +47,8 @@ const GuessForm = () => {
     year: DATE_YEARS[0],
   });
   const [time, setTime] = useState({
-    hour: TIME_HOURS,
-    minutes: TIME_MINUTES,
+    hour: TIME_HOURS[0],
+    minute: TIME_MINUTES[0],
   });
 
   const classes = useStyles();
