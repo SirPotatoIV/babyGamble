@@ -177,7 +177,6 @@ const GuessForm = () => {
             type="number"
             label="Weight (lbs)"
             onChange={(event) => {
-              console.log(event.target.value);
               setWeight({ ...weight, pounds: event.target.value });
             }}
             value={weight.pounds}
