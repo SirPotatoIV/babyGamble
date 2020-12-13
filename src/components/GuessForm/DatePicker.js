@@ -25,7 +25,6 @@ const DatePicker = ({ date, setDate }) => {
   const classes = useStyles();
 
   const handleDateChange = (key, newValue) => {
-    console.log(key, newValue);
     setDate({ ...date, [key]: newValue });
   };
   return (
@@ -60,6 +59,23 @@ const DatePicker = ({ date, setDate }) => {
           {DATE_MONTHS.map((month) => (
             <MenuItem key={`month_${month}`} value={month}>
               {month}
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
+      <FormControl className={classes.formControl}>
+        <InputLabel id="yearLabel">Year</InputLabel>
+        <Select
+          labelId="yearLabel"
+          id="year"
+          value={date.year}
+          onChange={(event) => {
+            handleDateChange('year', event.target.value);
+          }}
+        >
+          {DATE_YEARS.map((year) => (
+            <MenuItem key={`year_${year}`} value={year}>
+              {year}
             </MenuItem>
           ))}
         </Select>
