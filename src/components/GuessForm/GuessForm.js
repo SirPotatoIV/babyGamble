@@ -57,7 +57,8 @@ const GuessForm = () => {
 
   return (
     <Container className={classes.root}>
-      <form onSubmit={(event) => handleSubmitGuess(event)}>
+      <form>
+        <div></div>
         <div>
           <FormControl component="fieldset">
             <FormLabel component="legend">Sex</FormLabel>
