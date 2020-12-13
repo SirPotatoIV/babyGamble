@@ -39,9 +39,6 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(1),
     marginBottom: theme.spacing(1),
   },
-  formLabel: {
-    color: 'black',
-  },
 }));
 
 const GuessForm = () => {
@@ -78,7 +75,7 @@ const GuessForm = () => {
 
   return (
     <Container className={classes.root}>
-      <form>
+      <form onSubmit={() => handleSubmitGuess()}>
         <div>
           <Typography variant="h6">Birthday & Time</Typography>
           <DatePicker date={date} setDate={setDate} />
@@ -94,6 +91,7 @@ const GuessForm = () => {
               name="sex"
               value={sex}
               onChange={(event) => setSex(event.target.value)}
+              row
             >
               <FormControlLabel
                 value="female"
