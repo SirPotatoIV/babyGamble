@@ -7,6 +7,8 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 
+import { DATE_DAYS } from './date_constants';
+
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
@@ -17,60 +19,33 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(1),
     minWidth: '120px',
   },
-  textField: {
-    margin: theme.spacing(1),
-  },
 }));
 
-const DatePicker = () => {
+const DatePicker = ({ date, setDate }) => {
   const classes = useStyles();
-  <>
-    <FormControl className={classes.formControl}>
-      <InputLabel id="hairColorLabel">Hair Color</InputLabel>
-      <Select
-        labelId="hairColorLabel"
-        id="hairColor"
-        value={hairColor}
-        onChange={(event) => setHairColor(event.target.value)}
-      >
-        <MenuItem value="brown">Brown</MenuItem>
-        <MenuItem value="blonde">Blonde</MenuItem>
-        <MenuItem value="black">Black</MenuItem>
-        <MenuItem value="red">Red</MenuItem>
-        <MenuItem value="bald">Bald</MenuItem>
-      </Select>
-    </FormControl>
-    <FormControl className={classes.formControl}>
-      <InputLabel id="hairColorLabel">Hair Color</InputLabel>
-      <Select
-        labelId="hairColorLabel"
-        id="hairColor"
-        value={hairColor}
-        onChange={(event) => setHairColor(event.target.value)}
-      >
-        <MenuItem value="brown">Brown</MenuItem>
-        <MenuItem value="blonde">Blonde</MenuItem>
-        <MenuItem value="black">Black</MenuItem>
-        <MenuItem value="red">Red</MenuItem>
-        <MenuItem value="bald">Bald</MenuItem>
-      </Select>
-    </FormControl>
-    <FormControl className={classes.formControl}>
-      <InputLabel id="hairColorLabel">Hair Color</InputLabel>
-      <Select
-        labelId="hairColorLabel"
-        id="hairColor"
-        value={hairColor}
-        onChange={(event) => setHairColor(event.target.value)}
-      >
-        <MenuItem value="brown">Brown</MenuItem>
-        <MenuItem value="blonde">Blonde</MenuItem>
-        <MenuItem value="black">Black</MenuItem>
-        <MenuItem value="red">Red</MenuItem>
-        <MenuItem value="bald">Bald</MenuItem>
-      </Select>
-    </FormControl>
-  </>;
+
+  const handleDateChange = (key, newValue) => {
+    setDate({ ...date, [key]: newValue });
+  };
+  return (
+    <>
+      <FormControl className={classes.formControl}>
+        <InputLabel id="dayLabel">Day</InputLabel>
+        <Select
+          labelId="dayLabel"
+          id="day"
+          value={date.day}
+          onChange={(event) =>
+            handleDateChange(event.target.id, event.target.value)
+          }
+        >
+          {DATE_DAYS.map((day) => (
+            <MenuItem value={day}>{day}</MenuItem>
+          ))}
+        </Select>
+      </FormControl>
+    </>
+  );
 };
 
 export default DatePicker;

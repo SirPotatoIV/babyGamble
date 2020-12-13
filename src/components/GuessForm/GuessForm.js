@@ -15,6 +15,8 @@ import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import DatePicker from './DatePicker';
 
+import { DATE_DAYS, DATE_MONTHS, DATE_YEARS } from './date_constants';
+
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
@@ -36,7 +38,11 @@ const GuessForm = () => {
   const [eyeColor, setEyeColor] = useState('');
   const [weight, setWeight] = useState({ pounds: '', ounces: '' });
   const [length, setLength] = useState('');
-  const [date, setDate] = useState('');
+  const [date, setDate] = useState({
+    day: DATE_DAYS[0],
+    month: DATE_MONTHS[0],
+    year: DATE_YEARS[0],
+  });
   // const [time, setTime] = useState('');
 
   const classes = useStyles();
@@ -58,7 +64,7 @@ const GuessForm = () => {
     <Container className={classes.root}>
       <form>
         <div>
-          <DatePicker />
+          <DatePicker date={date} setDate={setDate} />
         </div>
         <div>
           <FormControl component="fieldset">
