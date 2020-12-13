@@ -11,6 +11,10 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: 'grid',
     justifyContent: 'center',
+    justifyItems: 'center',
+  },
+  header: {
+    margin: theme.spacing(1),
   },
 }));
 
@@ -19,8 +23,8 @@ export default function Home() {
 
   return (
     <Box className={classes.root} color="text.primary">
-      <Typography variant="h1" align="center">
-        Home
+      <Typography className={classes.header} variant="h1" align="center">
+        Welcome to Baby Guesser!
       </Typography>
       <SignIn />
       <Typography variant="h4" align="center">
