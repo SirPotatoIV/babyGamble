@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
 import { BrowserRouter, Switch, Redirect, Route } from 'react-router-dom';
-import About from './pages/About';
-import Guess from './pages/Guess';
-import Home from './pages/Home';
+import About from './routes/About';
+import Guess from './routes/Guess';
+import Home from './routes/Home';
 
 import UserProvider, { UserContext } from './providers/UserProvider';
 import GuessesProvider from './providers/GuessesProvider';
@@ -11,7 +11,7 @@ import Navbar from './components/Navbar';
 import './App.scss';
 
 function App() {
-  const user = useContext(UserContext);
+  let user = useContext(UserContext);
   console.log(user);
   return (
     <BrowserRouter>
