@@ -17,7 +17,12 @@ import DatePicker from './DatePicker';
 import TimePicker from './TimePicker';
 import Typography from '@material-ui/core/Typography';
 
-import { DATE_DAYS, DATE_MONTHS, DATE_YEARS } from './form_constants';
+import {
+  DATE_DAYS,
+  DATE_MONTHS,
+  DATE_YEARS,
+  TIME_HOURS_TWELVE,
+} from './form_constants';
 import { TIME_MINUTES, TIME_HOURS } from './form_constants';
 
 const useStyles = makeStyles((theme) => ({
@@ -47,7 +52,7 @@ const GuessForm = () => {
     year: DATE_YEARS[0],
   });
   const [time, setTime] = useState({
-    hour: TIME_HOURS[0],
+    hour: TIME_HOURS_TWELVE[0],
     minute: TIME_MINUTES[0],
   });
 

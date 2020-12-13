@@ -7,7 +7,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 
-import { TIME_MINUTES, TIME_HOURS } from './form_constants';
+import { TIME_MINUTES, TIME_HOURS_TWELVE } from './form_constants';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -38,7 +38,7 @@ const TimePicker = ({ time, setTime }) => {
             handleTimeChange('hour', event.target.value);
           }}
         >
-          {TIME_HOURS.map((hour) => (
+          {TIME_HOURS_TWELVE.map((hour) => (
             <MenuItem key={`hour_${hour}`} value={hour}>
               {hour}
             </MenuItem>
