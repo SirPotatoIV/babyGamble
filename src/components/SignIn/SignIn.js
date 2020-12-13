@@ -13,8 +13,9 @@ const useStyles = makeStyles((theme) => ({
     color: 'black',
   },
   SignIn: {
-    border: '2px solid black',
+    border: '0px solid black',
     borderRadius: '10px',
+    boxShadow: '5px 10px 8px 10px #888888',
     padding: '10px',
     margin: '10px',
     maxWidth: '400px',
@@ -114,7 +115,7 @@ export default function SignIn() {
                 variant="contained"
                 color="secondary"
               >
-                Sign in with Google
+                Log in with Google
               </Button>
             </Grid>
           </form>
