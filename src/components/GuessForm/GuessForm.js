@@ -113,7 +113,11 @@ const GuessForm = () => {
           <Typography className={classes.header} variant="h6">
             Sex
           </Typography>
-          <FormControl className={classes.formControl} component="fieldset">
+          <FormControl
+            className={classes.formControl}
+            component="fieldset"
+            required
+          >
             <RadioGroup
               aria-label="sex"
               name="sex"
@@ -134,7 +138,7 @@ const GuessForm = () => {
           <Typography className={classes.header} variant="h6">
             Hair & Eye Color
           </Typography>
-          <FormControl className={classes.formControl}>
+          <FormControl className={classes.formControl} required>
             <InputLabel id="eyeColorLabel">Eye Color</InputLabel>
             <Select
               labelId="eyeColorLabel"
@@ -148,7 +152,7 @@ const GuessForm = () => {
               <MenuItem value="red">Hazel</MenuItem>
             </Select>
           </FormControl>
-          <FormControl className={classes.formControl}>
+          <FormControl className={classes.formControl} required>
             <InputLabel id="hairColorLabel">Hair Color</InputLabel>
             <Select
               labelId="hairColorLabel"
@@ -178,6 +182,7 @@ const GuessForm = () => {
               setWeight({ ...weight, pounds: event.target.value });
             }}
             value={weight.pounds}
+            required
           />
           <TextField
             className={classes.textField}
@@ -188,6 +193,7 @@ const GuessForm = () => {
               setWeight({ ...weight, ounces: event.target.value })
             }
             value={weight.ounces}
+            required
           />
         </div>
         <div>
@@ -198,6 +204,7 @@ const GuessForm = () => {
             label="Length (inches)"
             onChange={(event) => setLength(event.target.value)}
             value={length}
+            required
           />
         </div>
         <Button
