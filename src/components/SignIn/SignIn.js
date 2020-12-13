@@ -73,7 +73,7 @@ export default function SignIn() {
     <>
       <Grid container spacing={3} className={classes.SignIn}>
         <Grid item xs={12}>
-          <Typography variant="h3">Sign in</Typography>
+          <Typography variant="h3">Log in</Typography>
         </Grid>
         <Grid item xs={12}>
           <form>
