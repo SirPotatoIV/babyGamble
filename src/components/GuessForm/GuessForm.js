@@ -22,8 +22,9 @@ import {
   DATE_MONTHS,
   DATE_YEARS,
   TIME_HOURS_TWELVE,
+  TIME_MINUTES,
+  TIME_MERIDIEM,
 } from './form_constants';
-import { TIME_MINUTES, TIME_HOURS } from './form_constants';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -54,6 +55,7 @@ const GuessForm = () => {
   const [time, setTime] = useState({
     hour: TIME_HOURS_TWELVE[0],
     minute: TIME_MINUTES[0],
+    meridiem: TIME_MERIDIEM[0],
   });
 
   const classes = useStyles();

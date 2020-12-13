@@ -7,7 +7,11 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 
-import { TIME_MINUTES, TIME_HOURS_TWELVE } from './form_constants';
+import {
+  TIME_MINUTES,
+  TIME_HOURS_TWELVE,
+  TIME_MERIDIEM,
+} from './form_constants';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -29,7 +33,7 @@ const TimePicker = ({ time, setTime }) => {
   return (
     <>
       <FormControl className={classes.formControl}>
-        <InputLabel id="hourLabel">hour</InputLabel>
+        <InputLabel id="hourLabel">Hour</InputLabel>
         <Select
           labelId="hourLabel"
           id="hour"
@@ -46,7 +50,7 @@ const TimePicker = ({ time, setTime }) => {
         </Select>
       </FormControl>
       <FormControl className={classes.formControl}>
-        <InputLabel id="minuteLabel">minute</InputLabel>
+        <InputLabel id="minuteLabel">Minute</InputLabel>
         <Select
           labelId="minuteLabel"
           id="minute"
@@ -58,6 +62,23 @@ const TimePicker = ({ time, setTime }) => {
           {TIME_MINUTES.map((minute) => (
             <MenuItem key={`minute_${minute}`} value={minute}>
               {minute}
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
+      <FormControl className={classes.formControl}>
+        <InputLabel id="meridiemLabel">AM / PM</InputLabel>
+        <Select
+          labelId="meridiemLabel"
+          id="meridiem"
+          value={time.meridiem}
+          onChange={(event) => {
+            handleTimeChange('meridiem', event.target.value);
+          }}
+        >
+          {TIME_MERIDIEM.map((meridiem) => (
+            <MenuItem key={`meridiem_${meridiem}`} value={meridiem}>
+              {meridiem}
             </MenuItem>
           ))}
         </Select>
