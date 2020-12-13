@@ -16,7 +16,8 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import DatePicker from './DatePicker';
 import Typography from '@material-ui/core/Typography';
 
-import { DATE_DAYS, DATE_MONTHS, DATE_YEARS } from './date_constants';
+import { DATE_DAYS, DATE_MONTHS, DATE_YEARS } from './form_constants';
+import { TIME_MINUTES, TIME_HOURS } from './form_constants';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -44,7 +45,7 @@ const GuessForm = () => {
     month: DATE_MONTHS[0],
     year: DATE_YEARS[0],
   });
-  // const [time, setTime] = useState('');
+  const [time, setTime] = useState({ hour: '' });
 
   const classes = useStyles();
 
