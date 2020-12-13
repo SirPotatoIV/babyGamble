@@ -45,6 +45,23 @@ const TimePicker = ({ time, setTime }) => {
           ))}
         </Select>
       </FormControl>
+      <FormControl className={classes.formControl}>
+        <InputLabel id="minuteLabel">minute</InputLabel>
+        <Select
+          labelId="minuteLabel"
+          id="minute"
+          value={time.minute}
+          onChange={(event) => {
+            handleTimeChange('minute', event.target.value);
+          }}
+        >
+          {TIME_MINUTES.map((minute) => (
+            <MenuItem key={`minute_${minute}`} value={minute}>
+              {minute}
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
     </>
   );
 };
