@@ -16,15 +16,6 @@ import DatePicker from './DatePicker';
 import TimePicker from './TimePicker';
 import Typography from '@material-ui/core/Typography';
 
-import {
-  DATE_DAYS,
-  DATE_MONTHS,
-  DATE_YEARS,
-  TIME_HOURS_TWELVE,
-  TIME_MINUTES,
-  TIME_MERIDIEM,
-} from './form_constants';
-
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
@@ -41,6 +32,9 @@ const useStyles = makeStyles((theme) => ({
   },
   header: {
     marginTop: '6px',
+  },
+  submit: {
+    marginTop: '8px',
   },
 }));
 
@@ -92,7 +86,7 @@ const GuessForm = () => {
           <Typography className={classes.header} variant="h6">
             Sex
           </Typography>
-          <FormControl component="fieldset">
+          <FormControl className={classes.formControl} component="fieldset">
             <RadioGroup
               aria-label="sex"
               name="sex"
@@ -180,6 +174,7 @@ const GuessForm = () => {
           />
         </div>
         <Button
+          className={classes.submit}
           type="submit"
           variant="contained"
           color="primary"
