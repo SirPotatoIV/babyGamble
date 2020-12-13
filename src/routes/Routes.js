@@ -7,7 +7,6 @@ import { UserContext } from '../providers/UserProvider';
 
 const Routes = () => {
   let user = useContext(UserContext);
-  console.log(user);
 
   return (
     <Switch>

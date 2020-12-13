@@ -56,7 +56,7 @@ const GuessForm = () => {
   });
 
   const classes = useStyles();
-  console.log(auth.currentUser);
+
   const handleSubmitGuess = async () => {
     // taking data from currentUser and storing it with the guess
     const { email: userEmail, uid } = auth.currentUser || {
@@ -79,11 +79,9 @@ const GuessForm = () => {
     };
     // sending guess to database
     try {
-      const docRef = await firestore.collection('guesses').add(guess);
+      await firestore.collection('guesses').add(guess);
       const userRef = firestore.doc(`users/${uid}`);
       await userRef.update({ hasGuessed: true });
-      const document = await docRef.get();
-      console.log(document.id);
     } catch (error) {
       setError({ isPresent: 'true', message: error.message });
     }
