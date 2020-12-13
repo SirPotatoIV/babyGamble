@@ -8,17 +8,24 @@ import Typography from '@material-ui/core/Typography';
 
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   root: {
     color: 'black',
   },
-  SignInForm: {
+  SignIn: {
     border: '2px solid black',
     borderRadius: '10px',
     padding: '10px',
     margin: '10px',
+    maxWidth: '400px',
   },
-});
+  TextField: {
+    margin: theme.spacing(1),
+  },
+  button: {
+    margin: theme.spacing(1),
+  },
+}));
 
 export default function SignIn() {
   const [email, setEmail] = useState('');
@@ -63,35 +70,36 @@ export default function SignIn() {
   };
 
   return (
-    <div className={classes.SignInForm}>
-      <Grid container spacing={3}>
+    <>
+      <Grid container spacing={3} className={classes.SignIn}>
         <Grid item xs={12}>
-          <Typography variant="h2">Sign in</Typography>
+          <Typography variant="h3">Sign in</Typography>
         </Grid>
         <Grid item xs={12}>
           <form>
             <TextField
+              className={classes.TextField}
               onChange={(event) => setEmail(event.target.value)}
               required
               id="signInEmail"
               label="E-mail"
-              variant="outlined"
               type="email"
               autoComplete="username"
               value={email}
             />
             <TextField
+              className={classes.TextField}
               onChange={(event) => setPassword(event.target.value)}
               required
               id="signInPassword"
               label="Password"
-              variant="outlined"
               type="password"
               autoComplete="current-password"
               value={password}
             />
             <Grid item xs={12}>
               <Button
+                className={classes.button}
                 onClick={() => handleSignInWithEmail()}
                 label="Sign in"
                 variant="contained"
@@ -100,6 +108,7 @@ export default function SignIn() {
                 Sign in
               </Button>
               <Button
+                className={classes.button}
                 onClick={() => handleSignInWithGoogle()}
                 label="Sign in with Google"
                 variant="contained"
@@ -116,6 +125,6 @@ export default function SignIn() {
           </Typography>
         )}
       </Grid>
-    </div>
+    </>
   );
 }
