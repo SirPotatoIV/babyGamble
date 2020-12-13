@@ -23,6 +23,13 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(1),
     minWidth: '120px',
   },
+  time_colon: {
+    fontSize: '32px',
+    fontFamily: theme.fontFamily,
+    fontWeight: 'bold',
+    verticalAlign: 'bottom',
+    padding: '4px',
+  },
 }));
 
 const TimePicker = ({ time, setTime }) => {
@@ -49,6 +56,7 @@ const TimePicker = ({ time, setTime }) => {
           ))}
         </Select>
       </FormControl>
+      <span className={classes.time_colon}>:</span>
       <FormControl className={classes.formControl}>
         <InputLabel id="minuteLabel">Minute</InputLabel>
         <Select
