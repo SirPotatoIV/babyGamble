@@ -14,6 +14,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import DatePicker from './DatePicker';
+import Typography from '@material-ui/core/Typography';
 
 import { DATE_DAYS, DATE_MONTHS, DATE_YEARS } from './date_constants';
 
@@ -64,6 +65,7 @@ const GuessForm = () => {
     <Container className={classes.root}>
       <form>
         <div>
+          <Typography variant="h6">Birthday</Typography>
           <DatePicker date={date} setDate={setDate} />
         </div>
         <div>
