@@ -36,8 +36,11 @@ const useStyles = makeStyles((theme) => ({
     minWidth: '120px',
   },
   textField: {
-    marginTop: theme.spacing(1),
-    marginBottom: theme.spacing(1),
+    margin: theme.spacing(1),
+    minWidth: '120px',
+  },
+  header: {
+    marginTop: '6px',
   },
 }));
 
@@ -77,14 +80,18 @@ const GuessForm = () => {
     <Container className={classes.root}>
       <form onSubmit={() => handleSubmitGuess()}>
         <div>
-          <Typography variant="h6">Birthday & Time</Typography>
+          <Typography className={classes.header} variant="h6">
+            Birthday & Time
+          </Typography>
           <DatePicker date={date} setDate={setDate} />
         </div>
         <div>
           <TimePicker time={time} setTime={setTime}></TimePicker>
         </div>
         <div>
-          <Typography variant="h6">Sex</Typography>
+          <Typography className={classes.header} variant="h6">
+            Sex
+          </Typography>
           <FormControl component="fieldset">
             <RadioGroup
               aria-label="sex"
@@ -103,7 +110,9 @@ const GuessForm = () => {
           </FormControl>
         </div>
         <div>
-          <Typography variant="h6">Hair & Eye Color</Typography>
+          <Typography className={classes.header} variant="h6">
+            Hair & Eye Color
+          </Typography>
           <FormControl className={classes.formControl}>
             <InputLabel id="eyeColorLabel">Eye Color</InputLabel>
             <Select
@@ -135,8 +144,11 @@ const GuessForm = () => {
           </FormControl>
         </div>
         <div>
-          <Typography variant="h6">Weight & Length</Typography>
+          <Typography className={classes.header} variant="h6">
+            Weight & Length
+          </Typography>
           <TextField
+            className={classes.textField}
             id="pounds"
             type="number"
             label="Weight (lbs)"
@@ -147,6 +159,7 @@ const GuessForm = () => {
             value={weight.pounds}
           />
           <TextField
+            className={classes.textField}
             id="ounces"
             type="number"
             label="Weight (oz)"
