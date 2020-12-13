@@ -11,7 +11,6 @@ const UserProvider = ({ children }) => {
     const unsubscribeFromAuth = auth.onAuthStateChanged(
       async (loggedInUser) => {
         // If profile already exists, then it returns the user profile
-        console.log(user);
         const userProfile = await createUserProfileDocument(loggedInUser);
         setUser({ userProfile });
       },
