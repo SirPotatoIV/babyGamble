@@ -7,7 +7,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 
-import { DATE_DAYS } from './date_constants';
+import { DATE_DAYS, DATE_MONTHS, DATE_YEARS } from './date_constants';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -41,8 +41,25 @@ const DatePicker = ({ date, setDate }) => {
           }}
         >
           {DATE_DAYS.map((day) => (
-            <MenuItem name="day" key={`day_${day}`} value={day}>
+            <MenuItem key={`day_${day}`} value={day}>
               {day}
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
+      <FormControl className={classes.formControl}>
+        <InputLabel id="monthLabel">Month</InputLabel>
+        <Select
+          labelId="monthLabel"
+          id="month"
+          value={date.month}
+          onChange={(event) => {
+            handleDateChange('month', event.target.value);
+          }}
+        >
+          {DATE_MONTHS.map((month) => (
+            <MenuItem key={`month_${month}`} value={month}>
+              {month}
             </MenuItem>
           ))}
         </Select>
