@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 import SignIn from '../components/SignIn';
 import SignUp from '../components/SignUp';
@@ -6,6 +6,7 @@ import SignUp from '../components/SignUp';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
+import { UserContext } from '../providers/UserProvider';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -19,7 +20,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Home() {
+  const user = useContext(UserContext);
   const classes = useStyles();
+
+  console.log(user);
 
   return (
     <Box className={classes.root} color="text.primary">

@@ -1,8 +1,6 @@
 import React, { useContext } from 'react';
-import { BrowserRouter, Switch, Redirect, Route } from 'react-router-dom';
-import About from './routes/About';
-import Guess from './routes/Guess';
-import Home from './routes/Home';
+import { BrowserRouter } from 'react-router-dom';
+import Routes from './routes/Routes';
 
 import UserProvider, { UserContext } from './providers/UserProvider';
 import GuessesProvider from './providers/GuessesProvider';
@@ -18,15 +16,7 @@ function App() {
       <UserProvider>
         <GuessesProvider>
           <Navbar />
-          <Switch>
-            <Route path="/about">
-              <About />
-            </Route>
-            <Route path="/guess">
-              {user ? <Guess /> : <Redirect to="/" />}
-            </Route>
-            <Route path="/">{user ? <Redirect to="/guess" /> : <Home />}</Route>
-          </Switch>
+          <Routes />
         </GuessesProvider>
       </UserProvider>
     </BrowserRouter>
