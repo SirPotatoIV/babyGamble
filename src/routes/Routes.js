@@ -7,14 +7,19 @@ import { UserContext } from '../providers/UserProvider';
 
 const Routes = () => {
   let user = useContext(UserContext);
+  console.log(user);
 
   return (
     <Switch>
       <Route path="/about">
         <About />
       </Route>
-      <Route path="/guess">{user ? <Guess /> : <Redirect to="/" />}</Route>
-      <Route path="/">{user ? <Redirect to="/guess" /> : <Home />}</Route>
+      <Route path="/guess">
+        {user.userProfile ? <Guess /> : <Redirect to="/" />}
+      </Route>
+      <Route path="/">
+        {user.userProfile ? <Redirect to="/guess" /> : <Home />}
+      </Route>
     </Switch>
   );
 };
