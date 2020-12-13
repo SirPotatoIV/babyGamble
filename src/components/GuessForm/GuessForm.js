@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { firestore, auth } from '../Firebase';
 import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
+import Box from '@material-ui/core/Box';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Icon from '@material-ui/core/Icon';
@@ -18,8 +18,7 @@ import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: 'flex',
-    flexWrap: 'wrap',
+    display: 'grid',
     justifyContent: 'center',
   },
   formControl: {
@@ -39,6 +38,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const GuessForm = () => {
+  const [error, setError] = useState({ isPresent: 'false', message: '' });
   const [sex, setSex] = useState('');
   const [hairColor, setHairColor] = useState('');
   const [eyeColor, setEyeColor] = useState('');
@@ -57,22 +57,49 @@ const GuessForm = () => {
 
   const classes = useStyles();
 
-  const handleSubmitGuess = async (event) => {
-    event.preventDefault();
+  const handleSubmitGuess = async () => {
     // taking data from currentUser and storing it with the guess
-    const { displayName, email: userEmail, uid } = auth?.currentUser;
+    const { email: userEmail, uid } = auth.currentUser || {
+      email: '',
+      uid: '',
+    };
     // taking data from the form and storing it with the guess
-    const guess = { displayName, userEmail, uid, sex, hairColor, eyeColor };
+    const guess = {
+      userEmail,
+      uid,
+      sex,
+      hairColor,
+      eyeColor,
+      weight,
+      length,
+      date,
+      time,
+    };
     // sending guess to database
-    const docRef = await firestore.collection('guesses').add(guess);
-    const document = await docRef.get();
-
-    console.log(document.id);
+    try {
+      const docRef = await firestore.collection('guesses').add(guess);
+      const document = await docRef.get();
+      console.log(document.id);
+    } catch (error) {
+      setError({ isPresent: 'true', message: error.message });
+    }
   };
 
   return (
-    <Container className={classes.root}>
-      <form onSubmit={() => handleSubmitGuess()}>
+    <Box className={classes.root}>
+      {error.isPresent && (
+        <div>
+          <Typography variant="subtitle1" color="error">
+            {error.message}
+          </Typography>
+        </div>
+      )}
+      <form
+        onSubmit={(event) => {
+          event.preventDefault();
+          handleSubmitGuess();
+        }}
+      >
         <div>
           <Typography className={classes.header} variant="h6">
             Birthday & Time
@@ -183,7 +210,7 @@ const GuessForm = () => {
           Submit Guess
         </Button>
       </form>
-    </Container>
+    </Box>
   );
 };
 
