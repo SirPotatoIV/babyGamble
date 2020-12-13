@@ -39,6 +39,9 @@ const useStyles = makeStyles((theme) => ({
   textField: {
     margin: theme.spacing(1),
   },
+  formLabel: {
+    color: 'black',
+  },
 }));
 
 const GuessForm = () => {
@@ -85,8 +88,8 @@ const GuessForm = () => {
           <TimePicker time={time} setTime={setTime}></TimePicker>
         </div>
         <div>
+          <Typography variant="h6">Sex</Typography>
           <FormControl component="fieldset">
-            <FormLabel component="legend">Sex</FormLabel>
             <RadioGroup
               aria-label="sex"
               name="sex"
