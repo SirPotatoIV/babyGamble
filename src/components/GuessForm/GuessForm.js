@@ -51,14 +51,14 @@ const GuessForm = () => {
   const [weight, setWeight] = useState({ pounds: '', ounces: '' });
   const [length, setLength] = useState('');
   const [date, setDate] = useState({
-    day: DATE_DAYS[0],
-    month: DATE_MONTHS[0],
-    year: DATE_YEARS[0],
+    day: '',
+    month: '',
+    year: '',
   });
   const [time, setTime] = useState({
-    hour: TIME_HOURS_TWELVE[0],
-    minute: TIME_MINUTES[0],
-    meridiem: TIME_MERIDIEM[0],
+    hour: '',
+    minute: '',
+    meridiem: '',
   });
 
   const classes = useStyles();
