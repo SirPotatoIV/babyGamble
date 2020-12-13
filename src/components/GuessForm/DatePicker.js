@@ -7,7 +7,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 
-import { DATE_DAYS, DATE_MONTHS, DATE_YEARS } from './date_constants';
+import { DATE_DAYS, DATE_MONTHS, DATE_YEARS } from './form_constants';
 
 const useStyles = makeStyles((theme) => ({
   root: {

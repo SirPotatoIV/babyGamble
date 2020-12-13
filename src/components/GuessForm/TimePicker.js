@@ -7,6 +7,8 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 
+import { TIME_MINUTES, TIME_HOURS } from './form_constants';
+
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
@@ -19,23 +21,26 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const TimePicker = () => {
+const TimePicker = ({ time, setTime }) => {
   const classes = useStyles();
+  const handleTimeChange = (key, newValue) => {
+    setTime({ ...time, [key]: newValue });
+  };
   return (
     <>
       <FormControl className={classes.formControl}>
-        <InputLabel id="dayLabel">Day</InputLabel>
+        <InputLabel id="hourLabel">hour</InputLabel>
         <Select
-          labelId="dayLabel"
-          id="day"
-          value={date.day}
+          labelId="hourLabel"
+          id="hour"
+          value={time.hour}
           onChange={(event) => {
-            handleDateChange('day', event.target.value);
+            handleTimeChange('hour', event.target.value);
           }}
         >
-          {DATE_DAYS.map((day) => (
-            <MenuItem key={`day_${day}`} value={day}>
-              {day}
+          {TIME_HOURS.map((hour) => (
+            <MenuItem key={`hour_${hour}`} value={hour}>
+              {hour}
             </MenuItem>
           ))}
         </Select>
