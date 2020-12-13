@@ -12,17 +12,25 @@ import Typography from '@material-ui/core/Typography';
 
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   root: {
     color: 'black',
   },
-  signUpForm: {
-    border: '2px solid black',
+  signUp: {
+    border: '0px solid black',
     borderRadius: '10px',
+    boxShadow: '5px 10px 8px 10px #888888',
     padding: '10px',
     margin: '10px',
+    maxWidth: '400px',
   },
-});
+  textField: {
+    margin: theme.spacing(1),
+  },
+  button: {
+    margin: theme.spacing(1),
+  },
+}));
 
 export default function SignUp() {
   const [email, setEmail] = useState('');
@@ -55,44 +63,45 @@ export default function SignUp() {
   }
 
   return (
-    <div className={classes.signUpForm}>
-      <Grid container spacing={3}>
+    <>
+      <Grid container spacing={3} className={classes.signUp}>
         <Grid item xs={12}>
-          <Typography variant="h2">Sign up</Typography>
+          <Typography variant="h3">Sign up</Typography>
         </Grid>
         <Grid item xs={12}>
           <form>
             <TextField
+              className={classes.textField}
               onChange={(event) => setDisplayName(event.target.value)}
               required
               id="signUpDisplayName"
               label="Display Name"
-              variant="outlined"
               type="text"
               value={displayName}
             />
             <TextField
+              className={classes.textField}
               onChange={(event) => setEmail(event.target.value)}
               required
               id="signUpEmail"
               label="E-mail"
-              variant="outlined"
               type="email"
               autoComplete="username"
               value={email}
             />
             <TextField
+              className={classes.textField}
               onChange={(event) => setPassword(event.target.value)}
               required
               id="signUpPassword"
               label="Password"
-              variant="outlined"
               type="password"
               autoComplete="current-password"
               value={password}
             />
             <Grid item xs={12}>
               <Button
+                className={classes.button}
                 onClick={() => handleSignUp()}
                 label="Sign up"
                 variant="contained"
@@ -109,6 +118,6 @@ export default function SignUp() {
           </Typography>
         )}
       </Grid>
-    </div>
+    </>
   );
 }
