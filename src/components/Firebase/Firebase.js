@@ -29,7 +29,7 @@ const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
 
 const signOut = () => auth.signOut();
 
-const createUserProfileDocument = async (user, additionalData) => {
+const createUserProfileDocument = async (user) => {
   // if no user, exit
   if (!user) return;
   // Get reference to the user in the database, assuming they do exist
@@ -47,7 +47,6 @@ const createUserProfileDocument = async (user, additionalData) => {
         createdAt,
         hasGuessed: false,
         requestedUpdates: false,
-        ...additionalData,
       });
     } catch (error) {
       console.error('Error creating user', error);
