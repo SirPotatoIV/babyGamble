@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Switch, Redirect, Route } from 'react-router-dom';
-import About from './About';
+// import About from './About';
 
 import Home from './Home';
 import User from './User';
