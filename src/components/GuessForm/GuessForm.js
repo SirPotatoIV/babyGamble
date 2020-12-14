@@ -30,6 +30,10 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(1),
     minWidth: '120px',
   },
+  multilineTextField: {
+    margin: theme.spacing(1),
+    minWidth: '100%',
+  },
   header: {
     marginTop: '6px',
   },
@@ -45,6 +49,7 @@ const GuessForm = () => {
   const [eyeColor, setEyeColor] = useState('');
   const [weight, setWeight] = useState({ pounds: '', ounces: '' });
   const [length, setLength] = useState('');
+  const [message, setMessage] = useState('');
   const [date, setDate] = useState({
     day: '',
     month: '',
@@ -214,6 +219,20 @@ const GuessForm = () => {
             onChange={(event) => setLength(event.target.value)}
             value={length}
             required
+          />
+        </div>
+        <div>
+          <Typography className={classes.header} variant="h6">
+            Leave a Little Message
+          </Typography>
+          <TextField
+            className={classes.multilineTextField}
+            id="outlined-multiline-static"
+            label="Message"
+            multiline
+            rows={4}
+            value={message}
+            onChange={(event) => setMessage(event.target.value)}
           />
         </div>
         <Button
