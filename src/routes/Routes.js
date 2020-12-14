@@ -3,10 +3,12 @@ import { Switch, Redirect, Route } from 'react-router-dom';
 import About from './About';
 import Guess from './Guess';
 import Home from './Home';
+import Result from './Result';
 import { UserContext } from '../providers/UserProvider';
 
 const Routes = () => {
   let user = useContext(UserContext);
+  console.log(user);
 
   return (
     <Switch>
@@ -15,6 +17,9 @@ const Routes = () => {
       </Route>
       <Route path="/guess">
         {user.userProfile ? <Guess /> : <Redirect to="/" />}
+      </Route>
+      <Route path="/result">
+        {user.userProfile?.hasGuessed ? <Result /> : <Redirect to="/" />}
       </Route>
       <Route path="/">
         {user.userProfile ? <Redirect to="/guess" /> : <Home />}

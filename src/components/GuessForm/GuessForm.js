@@ -63,7 +63,13 @@ const GuessForm = () => {
       email: '',
       uid: '',
     };
-    console.log(auth.currentUser);
+    // check if user has already guessed
+    const userRef = firestore.doc(`users/${uid}`);
+    const userSnapshot = await userRef.get();
+    if (userSnapshot.data().hasGuessed) {
+      setError({ isPresent: true, message: 'Sorry, you can only guess once.' });
+      return;
+    }
     // taking data from the form and storing it with the guess
     const guess = {
       userEmail,
