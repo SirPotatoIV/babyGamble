@@ -4,16 +4,16 @@ import Guess from './Guess';
 import Result from './Result';
 
 const User = ({ user }) => {
-  let { path, url } = useRouteMatch();
+  let { path } = useRouteMatch();
 
   return (
     <>
       <Switch>
+        <Route exact path={`${path}/result`}>
+          <Result />
+        </Route>
         <Route exact path={`${path}`}>
           {user.hasGuessed ? <Result /> : <Guess />}
-        </Route>
-        <Route exact path={`${path}/result`}>
-          {user.hasGuessed ? <Result /> : <Redirect to={`${url}`} />}
         </Route>
       </Switch>
     </>
