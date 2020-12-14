@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { auth } from '../Firebase';
 import { Link } from 'react-router-dom';
 import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
@@ -38,9 +39,11 @@ export default function NavBar() {
             </Tabs>
           </Grid>
           <Grid item xs={4}>
-            <Button variant="contained" onClick={() => signOut()}>
-              Log out
-            </Button>
+            {auth.currentUser && (
+              <Button variant="contained" onClick={() => signOut()}>
+                Log out
+              </Button>
+            )}
           </Grid>
         </Grid>
       </AppBar>
