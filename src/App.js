@@ -4,7 +4,6 @@ import Routes from './routes/Routes';
 
 import UserProvider from './providers/UserProvider';
 import GuessesProvider from './providers/GuessesProvider';
-import Navbar from './components/Navbar';
 
 import './App.scss';
 
@@ -13,7 +12,6 @@ function App() {
     <BrowserRouter>
       <UserProvider>
         <GuessesProvider>
-          <Navbar />
           <Routes />
         </GuessesProvider>
       </UserProvider>

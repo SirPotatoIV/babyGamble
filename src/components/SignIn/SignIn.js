@@ -54,6 +54,18 @@ export default function SignIn() {
     }
   };
 
+  const handlePasswordReset = async () => {
+    try {
+      await auth.sendPasswordResetEmail(email);
+      setAuthError({
+        isPresent: true,
+        message: 'Please check your e-mail for a further steps.',
+      });
+    } catch (error) {
+      setAuthError({ isPresent: true, message: error.message });
+    }
+  };
+
   const handleSignInWithGoogle = async () => {
     try {
       await auth.signInWithPopup(googleAuthProvider);
@@ -116,6 +128,14 @@ export default function SignIn() {
                 color="secondary"
               >
                 Log in with Google
+              </Button>
+              <Button
+                className={classes.button}
+                onClick={() => handlePasswordReset()}
+                label="Forgot Password"
+                variant="contained"
+              >
+                Reset Password
               </Button>
             </Grid>
           </form>
