@@ -1,9 +1,10 @@
 import React, { useContext } from 'react';
-import { auth, firestore, signOut } from '../components/Firebase';
+import { firestore, signOut } from '../components/Firebase';
 
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
+import { RadialChart } from 'react-vis';
 import { makeStyles } from '@material-ui/core/styles';
 import { UserContext } from '../providers/UserProvider';
 
@@ -77,6 +78,17 @@ const Result = () => {
         >
           No thanks
         </Button>
+      </Grid>
+      <Grid item xs={12} algin="center">
+        <RadialChart
+          width={300}
+          height={300}
+          showLabels={true}
+          data={[
+            { angle: 1, label: 'Male' },
+            { angle: 2, label: 'Female' },
+          ]}
+        />
       </Grid>
     </Grid>
   );
