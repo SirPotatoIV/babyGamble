@@ -1,5 +1,5 @@
 import React from 'react';
-import { Redirect, Route, Switch, useRouteMatch } from 'react-router-dom';
+import { Route, Switch, useRouteMatch } from 'react-router-dom';
 import Guess from './Guess';
 import Result from './Result';
 

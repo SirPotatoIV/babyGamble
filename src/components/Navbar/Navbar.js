@@ -39,12 +39,14 @@ export default function NavBar() {
               />
             </Tabs>
           </Grid>
-          <Grid item xs={4}>
-            {user.userProfile && (
-              <Button variant="contained" onClick={() => signOut()}>
-                Log out
-              </Button>
-            )}
+          <Grid container align="end" xs={4} spacing={2}>
+            <Grid item xs>
+              {user.userProfile && (
+                <Button variant="contained" onClick={() => signOut()}>
+                  Log out
+                </Button>
+              )}
+            </Grid>
           </Grid>
         </Grid>
       </AppBar>
