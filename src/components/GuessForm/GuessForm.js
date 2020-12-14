@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { firestore, auth } from '../Firebase';
+import { Redirect } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import TextField from '@material-ui/core/TextField';
@@ -88,6 +89,7 @@ const GuessForm = () => {
       await firestore.collection('guesses').add(guess);
       const userRef = firestore.doc(`users/${uid}`);
       await userRef.update({ hasGuessed: true });
+      <Redirect to="/result" />;
     } catch (error) {
       setError({ isPresent: 'true', message: error.message });
     }
