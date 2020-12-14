@@ -29,10 +29,8 @@ const DatePicker = ({ date, setDate }) => {
   };
   return (
     <>
-      <FormControl className={classes.formControl}>
-        <InputLabel id="dayLabel" required={true}>
-          Day
-        </InputLabel>
+      <FormControl required={true} className={classes.formControl}>
+        <InputLabel id="dayLabel">Day</InputLabel>
         <Select
           labelId="dayLabel"
           id="day"
@@ -48,7 +46,7 @@ const DatePicker = ({ date, setDate }) => {
           ))}
         </Select>
       </FormControl>
-      <FormControl className={classes.formControl}>
+      <FormControl className={classes.formControl} required={true}>
         <InputLabel id="monthLabel" required={true}>
           Month
         </InputLabel>
@@ -67,7 +65,7 @@ const DatePicker = ({ date, setDate }) => {
           ))}
         </Select>
       </FormControl>
-      <FormControl className={classes.formControl}>
+      <FormControl className={classes.formControl} required={true}>
         <InputLabel id="yearLabel" required={true}>
           Year
         </InputLabel>
