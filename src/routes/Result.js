@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { firestore, signOut } from '../components/Firebase';
+import { auth, firestore, signOut } from '../components/Firebase';
 
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
@@ -29,7 +29,12 @@ const Result = () => {
 
   const handleKeepUpdated = async () => {
     const userRef = firestore.doc(`users/${user.userProfile.uid}`);
-    console.log(userRef);
+    try {
+      await userRef.update({ requestedUpdates: true });
+      signOut();
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
