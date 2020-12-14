@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { firestore, auth } from '../Firebase';
+import { useHistory } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import TextField from '@material-ui/core/TextField';
@@ -56,6 +57,7 @@ const GuessForm = () => {
   });
 
   const classes = useStyles();
+  const history = useHistory();
 
   const handleSubmitGuess = async () => {
     // taking data from currentUser and storing it with the guess
@@ -63,6 +65,13 @@ const GuessForm = () => {
       email: '',
       uid: '',
     };
+    // check if user has already guessed
+    const userRef = firestore.doc(`users/${uid}`);
+    const userSnapshot = await userRef.get();
+    if (userSnapshot.data().hasGuessed) {
+      setError({ isPresent: true, message: 'Sorry, you can only guess once.' });
+      return;
+    }
     // taking data from the form and storing it with the guess
     const guess = {
       userEmail,
@@ -74,12 +83,14 @@ const GuessForm = () => {
       length,
       date,
       time,
+      timeSubmitted: new Date(),
     };
     // sending guess to database
     try {
-      const docRef = await firestore.collection('guesses').add(guess);
-      const document = await docRef.get();
-      console.log(document.id);
+      await firestore.collection('guesses').add(guess);
+      const userRef = firestore.doc(`users/${uid}`);
+      await userRef.update({ hasGuessed: true });
+      history.push('/user/result');
     } catch (error) {
       setError({ isPresent: 'true', message: error.message });
     }
@@ -177,7 +188,6 @@ const GuessForm = () => {
             type="number"
             label="Weight (lbs)"
             onChange={(event) => {
-              console.log(event.target.value);
               setWeight({ ...weight, pounds: event.target.value });
             }}
             value={weight.pounds}

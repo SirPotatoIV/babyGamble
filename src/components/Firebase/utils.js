@@ -15,6 +15,10 @@ export const createErrorMessage = (errorCode) => {
     case 'auth/email-already-in-use':
       errorMessage = 'The e-mail address you entered is already registered.';
       break;
+    case 'auth/invalid-email':
+      errorMessage =
+        'The e-mail address you entered is not formatted correctly.';
+      break;
     default:
       errorMessage =
         'Sign in/Sign Up is currently not working. Please try again later.';

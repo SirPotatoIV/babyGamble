@@ -42,10 +42,10 @@ export default function SignUp() {
 
   async function handleSignUp() {
     try {
-      const { user } = await auth.createUserWithEmailAndPassword(
-        email,
-        password
-      );
+      let { user } = await auth.createUserWithEmailAndPassword(email, password);
+      if (!user.displayName) {
+        user = { ...user, displayName };
+      }
       createUserProfileDocument(user, displayName);
 
       // Clear form

@@ -1,8 +1,6 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import About from './pages/About';
-import Guess from './pages/Guess';
-import Home from './pages/Home';
+import { BrowserRouter } from 'react-router-dom';
+import Routes from './routes/Routes';
 
 import UserProvider from './providers/UserProvider';
 import GuessesProvider from './providers/GuessesProvider';
@@ -16,17 +14,7 @@ function App() {
       <UserProvider>
         <GuessesProvider>
           <Navbar />
-          <Switch>
-            <Route path="/about">
-              <About />
-            </Route>
-            <Route path="/guess">
-              <Guess />
-            </Route>
-            <Route path="/">
-              <Home />
-            </Route>
-          </Switch>
+          <Routes />
         </GuessesProvider>
       </UserProvider>
     </BrowserRouter>

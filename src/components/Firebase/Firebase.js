@@ -45,6 +45,8 @@ const createUserProfileDocument = async (user, additionalData) => {
         displayName,
         email,
         createdAt,
+        hasGuessed: false,
+        requestedUpdates: false,
         ...additionalData,
       });
     } catch (error) {
