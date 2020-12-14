@@ -26,11 +26,11 @@ export default function Home() {
       <Typography className={classes.header} variant="h1" align="center">
         Welcome to Baby Guesser!
       </Typography>
-      <SignIn />
+      <SignUp />
       <Typography variant="h4" align="center">
         OR
       </Typography>
-      <SignUp />
+      <SignIn />
     </Box>
   );
 }
