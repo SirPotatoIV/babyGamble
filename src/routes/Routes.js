@@ -11,9 +11,9 @@ const Routes = () => {
 
   return (
     <Switch>
-      <Route path="/about">
+      {/* <Route path="/about">
         <About />
-      </Route>
+      </Route> */}
       <Route path="/user">
         {user.userProfile ? (
           <User user={user.userProfile} />
