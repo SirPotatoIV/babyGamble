@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Switch, Redirect, Route } from 'react-router-dom';
-import About from './About';
+// import About from './About';
 
 import Home from './Home';
 import User from './User';
@@ -11,9 +11,9 @@ const Routes = () => {
 
   return (
     <Switch>
-      <Route path="/about">
+      {/* <Route path="/about">
         <About />
-      </Route>
+      </Route> */}
       <Route path="/user">
         {user.userProfile ? (
           <User user={user.userProfile} />

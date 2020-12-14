@@ -30,6 +30,10 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(1),
     minWidth: '120px',
   },
+  multilineTextField: {
+    margin: theme.spacing(1),
+    minWidth: '100%',
+  },
   header: {
     marginTop: '6px',
   },
@@ -45,6 +49,7 @@ const GuessForm = () => {
   const [eyeColor, setEyeColor] = useState('');
   const [weight, setWeight] = useState({ pounds: '', ounces: '' });
   const [length, setLength] = useState('');
+  const [message, setMessage] = useState('');
   const [date, setDate] = useState({
     day: '',
     month: '',
@@ -83,6 +88,7 @@ const GuessForm = () => {
       length,
       date,
       time,
+      message,
       timeSubmitted: new Date(),
     };
     // sending guess to database
@@ -126,7 +132,7 @@ const GuessForm = () => {
           <FormControl
             className={classes.formControl}
             component="fieldset"
-            required
+            required={true}
           >
             <RadioGroup
               aria-label="sex"
@@ -137,10 +143,14 @@ const GuessForm = () => {
             >
               <FormControlLabel
                 value="female"
-                control={<Radio />}
+                control={<Radio required={true} />}
                 label="Female"
               />
-              <FormControlLabel value="male" control={<Radio />} label="Male" />
+              <FormControlLabel
+                value="male"
+                control={<Radio required={true} />}
+                label="Male"
+              />
             </RadioGroup>
           </FormControl>
         </div>
@@ -214,6 +224,20 @@ const GuessForm = () => {
             onChange={(event) => setLength(event.target.value)}
             value={length}
             required
+          />
+        </div>
+        <div>
+          <Typography className={classes.header} variant="h6">
+            Leave a Little Message (optional)
+          </Typography>
+          <TextField
+            className={classes.multilineTextField}
+            id="outlined-multiline-static"
+            label="Message"
+            multiline
+            rows={4}
+            value={message}
+            onChange={(event) => setMessage(event.target.value)}
           />
         </div>
         <Button
