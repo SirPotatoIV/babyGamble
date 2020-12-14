@@ -4,8 +4,14 @@ import { firestore, signOut } from '../components/Firebase';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import { RadialChart } from 'react-vis';
-import { makeStyles } from '@material-ui/core/styles';
+import {
+  RadialChart,
+  HorizontalBarSeries,
+  XYPlot,
+  XAxis,
+  YAxis,
+} from 'react-vis';
+import { makeStyles, theme } from '@material-ui/core/styles';
 import { UserContext } from '../providers/UserProvider';
 
 const useStyles = makeStyles((theme) => ({
@@ -84,11 +90,27 @@ const Result = () => {
           width={300}
           height={300}
           showLabels={true}
+          labelsStyle={{
+            fontFamily: 'Roboto',
+            fontSize: '20px',
+          }}
           data={[
             { angle: 1, label: 'Male' },
             { angle: 2, label: 'Female' },
           ]}
         />
+        <XYPlot width={300} height={300}>
+          <HorizontalBarSeries
+            x={'Color'}
+            data={[
+              { x: 'Black', y: 3 },
+              { x: 'Red', y: 5 },
+              { x: 'Blonde', y: 2 },
+            ]}
+          />
+          <XAxis />
+          <YAxis />
+        </XYPlot>
       </Grid>
     </Grid>
   );
