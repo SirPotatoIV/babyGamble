@@ -143,10 +143,14 @@ const GuessForm = () => {
             >
               <FormControlLabel
                 value="female"
-                control={<Radio />}
+                control={<Radio required={true} />}
                 label="Female"
               />
-              <FormControlLabel value="male" control={<Radio />} label="Male" />
+              <FormControlLabel
+                value="male"
+                control={<Radio required={true} />}
+                label="Male"
+              />
             </RadioGroup>
           </FormControl>
         </div>
