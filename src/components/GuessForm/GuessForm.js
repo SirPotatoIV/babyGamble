@@ -88,6 +88,7 @@ const GuessForm = () => {
       length,
       date,
       time,
+      message,
       timeSubmitted: new Date(),
     };
     // sending guess to database
