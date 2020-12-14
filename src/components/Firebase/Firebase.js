@@ -30,7 +30,6 @@ const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
 const signOut = () => auth.signOut();
 
 const createUserProfileDocument = async (user, additionalInfo) => {
-  console.log('Create user occurred', user);
   // if no user, exit
   if (!user) return;
   // Get reference to the user in the database, assuming they do exist

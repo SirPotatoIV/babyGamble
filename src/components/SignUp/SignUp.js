@@ -46,13 +46,11 @@ export default function SignUp() {
         email,
         password
       );
-      console.log('user created in FB:', user);
       const additionalInfo = {
         displayName: displayName,
         hasGuessed: false,
         requestedUpdates: false,
       };
-      console.log('display name added', user);
       await createUserProfileDocument(user, additionalInfo);
 
       // Clear form
