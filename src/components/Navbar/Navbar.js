@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { auth } from '../Firebase';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
@@ -7,9 +6,11 @@ import Grid from '@material-ui/core/Grid';
 import Tab from '@material-ui/core/Tab';
 import Tabs from '@material-ui/core/Tabs';
 import { signOut } from '../Firebase';
+import { UserContext } from '../../providers/UserProvider';
 
 export default function NavBar() {
   const [value, setValue] = useState(0);
+  let user = useContext(UserContext);
 
   function handleClick(tab) {
     setValue(tab);
@@ -39,7 +40,7 @@ export default function NavBar() {
             </Tabs>
           </Grid>
           <Grid item xs={4}>
-            {auth.currentUser && (
+            {user.userProfile && (
               <Button variant="contained" onClick={() => signOut()}>
                 Log out
               </Button>
