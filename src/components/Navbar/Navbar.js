@@ -22,7 +22,7 @@ export default function NavBar() {
         <Grid container alignItems="center">
           <Grid item xs={4}></Grid>
           <Grid item xs={4}>
-            <Tabs value={value} centered>
+            {/* <Tabs value={value} centered>
               <Tab
                 onClick={() => handleClick(0)}
                 value={0}
@@ -37,7 +37,7 @@ export default function NavBar() {
                 to="/about"
                 label="About"
               />
-            </Tabs>
+            </Tabs> */}
           </Grid>
           <Grid container align="end" xs={4} spacing={2}>
             <Grid item xs>
