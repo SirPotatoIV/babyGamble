@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { auth, firestore, signOut } from '../components/Firebase';
+import { firestore, signOut } from '../components/Firebase';
 
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
