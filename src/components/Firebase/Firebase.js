@@ -29,7 +29,8 @@ const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
 
 const signOut = () => auth.signOut();
 
-const createUserProfileDocument = async (user) => {
+const createUserProfileDocument = async (user, additionalInfo) => {
+  console.log('Create user occurred', user);
   // if no user, exit
   if (!user) return;
   // Get reference to the user in the database, assuming they do exist
@@ -37,6 +38,7 @@ const createUserProfileDocument = async (user) => {
   // Go and fetch the document from the location.
   const snapshot = await userRef.get();
   // if a snapshot does not exist (meaning the user profile does not exist)
+  console.log('snapshot exists?', snapshot.exists);
   if (!snapshot.exists) {
     const createdAt = new Date();
     const { displayName, email } = user;
@@ -45,8 +47,7 @@ const createUserProfileDocument = async (user) => {
         displayName,
         email,
         createdAt,
-        hasGuessed: false,
-        requestedUpdates: false,
+        ...additionalInfo,
       });
     } catch (error) {
       console.error('Error creating user', error);

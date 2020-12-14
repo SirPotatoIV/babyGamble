@@ -42,11 +42,18 @@ export default function SignUp() {
 
   async function handleSignUp() {
     try {
-      let { user } = await auth.createUserWithEmailAndPassword(email, password);
-
-      user.displayName = displayName;
-
-      createUserProfileDocument(user);
+      const { user } = await auth.createUserWithEmailAndPassword(
+        email,
+        password
+      );
+      console.log('user created in FB:', user);
+      const additionalInfo = {
+        displayName: displayName,
+        hasGuessed: false,
+        requestedUpdates: false,
+      };
+      console.log('display name added', user);
+      await createUserProfileDocument(user, additionalInfo);
 
       // Clear form
       setEmail('');
