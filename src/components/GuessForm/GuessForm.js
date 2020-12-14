@@ -132,7 +132,7 @@ const GuessForm = () => {
           <FormControl
             className={classes.formControl}
             component="fieldset"
-            required
+            required={true}
           >
             <RadioGroup
               aria-label="sex"
@@ -224,7 +224,7 @@ const GuessForm = () => {
         </div>
         <div>
           <Typography className={classes.header} variant="h6">
-            Leave a Little Message
+            Leave a Little Message (optional)
           </Typography>
           <TextField
             className={classes.multilineTextField}
