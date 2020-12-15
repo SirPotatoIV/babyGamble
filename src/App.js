@@ -11,9 +11,9 @@ function App() {
   return (
     <BrowserRouter>
       <UserProvider>
-        <GuessesProvider>
-          <Routes />
-        </GuessesProvider>
+        {/* <GuessesProvider> */}
+        <Routes />
+        {/* </GuessesProvider> */}
       </UserProvider>
     </BrowserRouter>
   );

@@ -6,7 +6,7 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import {
   RadialChart,
-  HorizontalBarSeries,
+  VerticalBarSeries,
   VerticalGridLines,
   HorizontalGridLines,
   XYPlot,
@@ -104,22 +104,25 @@ const Result = () => {
       </Grid>
       <Grid item xs={12} align="center">
         <XYPlot
-          height={300}
+          height={500}
           width={500}
-          xType="time"
-          yType="linear"
-          xDomain={[0, 20]}
-          yDomain={[0, 8]}
+          xType="ordinal"
+          // yType="linear"
+          yDomain={[0, 20]}
+          getxDomain={(d) => d.x}
         >
-          <HorizontalGridLines />
+          {/* <VerticalGridLines /> */}
           <XAxis />
           <YAxis />
-          <HorizontalBarSeries
+          <VerticalBarSeries
             color="red"
+            xType="ordinal"
+            yType="linear"
             data={[
-              { x: 10, y: 1 },
-              { x: 5, y: 2 },
-              { x: 8, y: 3 },
+              { x: 'test1', y: 10 },
+              { x: 'test2', y: 5 },
+              { x: 'test3', y: 15 },
+              { x: 'test4', y: 20 },
             ]}
             style={{}}
           />
