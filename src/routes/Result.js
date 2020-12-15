@@ -6,9 +6,8 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import {
   RadialChart,
+  MarkSeries,
   VerticalBarSeries,
-  VerticalGridLines,
-  HorizontalGridLines,
   XYPlot,
   XAxis,
   YAxis,
@@ -87,7 +86,7 @@ const Result = () => {
           No thanks
         </Button>
       </Grid>
-      <Grid item xs={12} algin="center">
+      <Grid item xs={12} align="center">
         <RadialChart
           width={300}
           height={300}
@@ -104,27 +103,56 @@ const Result = () => {
       </Grid>
       <Grid item xs={12} align="center">
         <XYPlot
-          height={500}
-          width={500}
+          height={400}
+          width={400}
           xType="ordinal"
           // yType="linear"
           yDomain={[0, 20]}
           getxDomain={(d) => d.x}
         >
           {/* <VerticalGridLines /> */}
-          <XAxis />
-          <YAxis />
+          <XAxis
+            // tickLabelAngle={45}
+            // tickPadding={40}
+            style={{
+              text: {
+                fontSize: 20,
+                fontFamily: 'Roboto',
+              },
+            }}
+          />
+          <YAxis
+            style={{
+              fontFamily: 'Roboto',
+              fontSize: 14,
+            }}
+          />
           <VerticalBarSeries
-            color="red"
+            // color="red"
             xType="ordinal"
             yType="linear"
+            animation={{ damping: 10, stiffness: 20 }}
             data={[
               { x: 'test1', y: 10 },
               { x: 'test2', y: 5 },
               { x: 'test3', y: 15 },
               { x: 'test4', y: 20 },
             ]}
-            style={{}}
+          />
+        </XYPlot>
+      </Grid>
+      <Grid item xs={12} align="center">
+        <XYPlot width={300} height={300}>
+          <XAxis title="Length" />
+          <YAxis title="Weight" />
+          <MarkSeries
+            data={[
+              { x: 22, y: 6.5 },
+              { x: 19, y: 7.0 },
+              { x: 20, y: 8.0 },
+              { x: 20, y: 7.0 },
+              { x: 20, y: 7.0 },
+            ]}
           />
         </XYPlot>
       </Grid>
