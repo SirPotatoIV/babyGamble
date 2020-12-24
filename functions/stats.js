@@ -106,8 +106,27 @@ let lengthAndWeight = [{ length: 0, weight: 0, size: 2 }];
 const categoryCount = (guesses) => {
   guesses.forEach((guess) => {
     sex[guess.sex]++;
+    hairColor[guess.hairColor]++;
+    // I messed up on the values for eye color in the guessing form.
+    // This corrects that error.
+    switch (guess.eyeColor) {
+      case 'brown':
+        eyeColor.brown++;
+        break;
+      case 'blonde':
+        eyeColor.blue++;
+        break;
+      case 'black':
+        eyeColor.green++;
+        break;
+      case 'red':
+        eyeColor.hazel++;
+        break;
+      default:
+        eyeColor.unknown++;
+    }
   });
-  console.log(sex);
+  console.log(sex, hairColor, eyeColor);
 };
 categoryCount(userGuesses);
 // put all the weights into a single array
