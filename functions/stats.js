@@ -10,24 +10,22 @@ const userGuesses = data.guesses;
 let sex = {
   male: 0,
   female: 0,
-  chartData: [
-    { male: 0, label: 'male' },
-    { female: 0, label: 'female' },
-  ],
+  chartData: [],
 };
+// { male: 0, label: 'male' },
+// { female: 0, label: 'female' },
 
 let eyeColor = {
   brown: 0,
   blue: 0,
   green: 0,
   hazel: 0,
-  chartData: [
-    { brown: 0, label: 'brown' },
-    { blue: 0, label: 'blue' },
-    { green: 0, label: 'green' },
-    { hazel: 0, label: 'hazel' },
-  ],
+  chartData: [],
 };
+// { brown: 0, label: 'brown' },
+// { blue: 0, label: 'blue' },
+// { green: 0, label: 'green' },
+// { hazel: 0, label: 'hazel' },
 
 let hairColor = {
   brown: 0,
@@ -35,14 +33,15 @@ let hairColor = {
   black: 0,
   red: 0,
   bald: 0,
-  chartData: [
-    { brown: 0, label: 'brown' },
-    { blonde: 0, label: 'blonde' },
-    { black: 0, label: 'black' },
-    { red: 0, label: 'red' },
-    { bald: 0, label: 'bald' },
-  ],
+  chartData: [],
 };
+// chartData: [
+//   { brown: 0, label: 'brown' },
+//   { blonde: 0, label: 'blonde' },
+//   { black: 0, label: 'black' },
+//   { red: 0, label: 'red' },
+//   { bald: 0, label: 'bald' },
+// ],
 
 // bar graph
 // -- chartData: [category, total]
@@ -90,40 +89,44 @@ let times = {
   ],
 };
 
-let dateAndTimes = {
-  guesses: [],
-  chartData: [
-    [1, 0],
-    [2, 0],
-    [3, 0],
-    [4, 0],
-    [5, 0],
-  ],
-};
-
 // mark series (scatter plot)
 // [{categoryXaxis: total, categoryYaxis, total, size: 2}]
 let lengthAndWeight = {
+  chartData: [],
+};
+let dateAndTimes = {
   guesses: [],
-  chartData: [{ length: 0, weight: 0, size: 2 }],
+  chartData: [{ date: 0, time: 0, size: 2 }],
 };
 
 // sum up the total count of sex, eyeColor, and hairColor by category
 const categoryCount = (guesses) => {
   guesses.forEach((guess) => {
-    //
-    let reformmatedMonth = `${guess.date.month.charAt(
-      0
-    )}${guess.date.month.slice(1).toLowerCase()}`;
-    const guessDate = dayjs(
-      `${guess.date.year} ${reformmatedMonth} ${guess.date.day}`,
-      'YYYY MMM D'
-    );
-
+    // covert to number and add ounces to pounds
     const guessWeight =
       parseInt(guess.weight.pounds, 10) +
       parseInt(guess.weight.ounces, 10) / 16;
+
+    // convert to number
     const guessLength = parseInt(guess.length, 10);
+
+    // had to reformat month for it to work with day.js.
+    // -- First letter uppercase. Second and Third lowercase.
+    const reformattedMonth = `${guess.date.month.charAt(
+      0
+    )}${guess.date.month.slice(1).toLowerCase()}`;
+
+    // convert date into dayjs format
+    const guessDate = dayjs(
+      `${guess.date.year} ${reformattedMonth} ${guess.date.day}`,
+      'YYYY MMM D'
+    );
+
+    // convert time into dayjs format
+    const guessTime = dayjs(
+      `${guess.time.hour} ${guess.time.minute} ${guess.time.meridiem}`,
+      'h m A'
+    );
 
     // count sex guesses
     sex[guess.sex]++;
@@ -165,21 +168,45 @@ const categoryCount = (guesses) => {
     // take the weight guess and the length guess and put then in an object as a pair
     // -- [{weight: 6.5, length: 22}, {weight: 8.6, length: 19}]
     // -- handle outliers
-    lengthAndWeight.guesses.push({ length: guessLength, weight: guessWeight });
+    lengthAndWeight.chartData.push({
+      length: guessLength,
+      weight: guessWeight,
+      size: 2,
+    });
 
     // put all dates into a single array
     // -- convert into a date datatype
     // -- calculate how you are bucketing.
     // -- calculate totals in each bucket.
     dates.guesses.push(guessDate);
+
+    // put all times into a single array.
+    // -- calculate how you are bucketing.
+    // -- calculate totals in each bucket.
+    times.guesses.push(guessTime);
+
+    // put date and time into a single dataset.
+    dateAndTimes.chartData.push({ date: guessDate, time: guessTime, size: 2 });
   });
-  console.log(dates);
 };
 categoryCount(userGuesses);
-// put all times into a single array.
-// -- calculate how you are bucketing.
-// -- calculate totals in each bucket.
 
+const pieChartData = (guessType) => {
+  const categories = Object.keys(guessType);
+  // remove chartData from categories
+  categories.splice(categories.indexOf('chartData'), 1);
+  // move each key into the chartData
+  categories.forEach((category) => {
+    guessType.chartData.push({
+      angle: guessType[category],
+      label: category,
+      color: category,
+    });
+  });
+};
+// pieChartData(sex);
+pieChartData(eyeColor);
+console.log(eyeColor);
 // bucketing
 // -- total number of guesses
 // -- calculate the range: max - min (there may be Math methods for this)
