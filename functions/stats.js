@@ -105,7 +105,9 @@ let lengthAndWeight = [{ length: 0, weight: 0, size: 2 }];
 // sum up the total count of sex, eyeColor, and hairColor by category
 const categoryCount = (guesses) => {
   guesses.forEach((guess) => {
+    // count sex guesses
     sex[guess.sex]++;
+    // count hair color guesses
     hairColor[guess.hairColor]++;
     // I messed up on the values for eye color in the guessing form.
     // This corrects that error.
@@ -125,16 +127,22 @@ const categoryCount = (guesses) => {
       default:
         eyeColor.unknown++;
     }
+    // put all the lengths into a single array
+    // -- handle outliers
+    // -- calculate how you are bucketing.
+    // -- calculate totals in each bucket.
+    length.guesses.push(parseInt(guess.length, 10));
+    // put all the weights into a single array
+    // -- handle outliers
+    // -- convert each weight guess into a single number
+    // -- There are 16 ounces in a pound, and add that to the pounds property
+    weight.guesses.push(
+      parseInt(guess.weight.pounds, 10) + parseInt(guess.weight.ounces, 10) / 16
+    );
   });
-  console.log(sex, hairColor, eyeColor);
+  console.log(length, weight);
 };
 categoryCount(userGuesses);
-// put all the weights into a single array
-// -- convert each weight guess into a single number
-// -- There are 16 ounces in a pound, and add that to the pounds property
-// put all the lengths into a single array
-// -- calculate how you are bucketing.
-// -- calculate totals in each bucket.
 // take the weight guess and the length guess and put then in an object as a pair
 // -- [{weight: 6.5, length: 22}, {weight: 8.6, length: 19}]
 // put all dates into a single array
