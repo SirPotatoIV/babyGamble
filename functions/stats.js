@@ -2,6 +2,9 @@
 // pie chart
 // -- {category: total, label: label_name}
 const data = require('./sampleData.json');
+const customParseFormat = require('dayjs/plugin/customParseFormat');
+const dayjs = require('dayjs');
+dayjs.extend(customParseFormat);
 const userGuesses = data.guesses;
 
 let sex = {
@@ -43,7 +46,7 @@ let hairColor = {
 
 // bar graph
 // -- chartData: [category, total]
-let length = {
+let lengths = {
   guesses: [],
   chartData: [
     [1, 0],
@@ -54,7 +57,7 @@ let length = {
   ],
 };
 
-let weight = {
+let weights = {
   guesses: [],
   chartData: [
     [1, 0],
@@ -76,7 +79,7 @@ let dates = {
   ],
 };
 
-let time = {
+let times = {
   guesses: [],
   chartData: [
     [1, 0],
@@ -87,7 +90,7 @@ let time = {
   ],
 };
 
-let dateAndTime = {
+let dateAndTimes = {
   guesses: [],
   chartData: [
     [1, 0],
@@ -100,15 +103,34 @@ let dateAndTime = {
 
 // mark series (scatter plot)
 // [{categoryXaxis: total, categoryYaxis, total, size: 2}]
-let lengthAndWeight = [{ length: 0, weight: 0, size: 2 }];
+let lengthAndWeight = {
+  guesses: [],
+  chartData: [{ length: 0, weight: 0, size: 2 }],
+};
 
 // sum up the total count of sex, eyeColor, and hairColor by category
 const categoryCount = (guesses) => {
   guesses.forEach((guess) => {
+    //
+    let reformmatedMonth = `${guess.date.month.charAt(
+      0
+    )}${guess.date.month.slice(1).toLowerCase()}`;
+    const guessDate = dayjs(
+      `${guess.date.year} ${reformmatedMonth} ${guess.date.day}`,
+      'YYYY MMM D'
+    );
+
+    const guessWeight =
+      parseInt(guess.weight.pounds, 10) +
+      parseInt(guess.weight.ounces, 10) / 16;
+    const guessLength = parseInt(guess.length, 10);
+
     // count sex guesses
     sex[guess.sex]++;
+
     // count hair color guesses
     hairColor[guess.hairColor]++;
+
     // I messed up on the values for eye color in the guessing form.
     // This corrects that error.
     switch (guess.eyeColor) {
@@ -127,28 +149,33 @@ const categoryCount = (guesses) => {
       default:
         eyeColor.unknown++;
     }
+
     // put all the lengths into a single array
     // -- handle outliers
     // -- calculate how you are bucketing.
     // -- calculate totals in each bucket.
-    length.guesses.push(parseInt(guess.length, 10));
+    lengths.guesses.push(guessLength);
+
     // put all the weights into a single array
     // -- handle outliers
     // -- convert each weight guess into a single number
     // -- There are 16 ounces in a pound, and add that to the pounds property
-    weight.guesses.push(
-      parseInt(guess.weight.pounds, 10) + parseInt(guess.weight.ounces, 10) / 16
-    );
+    weights.guesses.push(guessWeight);
+
+    // take the weight guess and the length guess and put then in an object as a pair
+    // -- [{weight: 6.5, length: 22}, {weight: 8.6, length: 19}]
+    // -- handle outliers
+    lengthAndWeight.guesses.push({ length: guessLength, weight: guessWeight });
+
+    // put all dates into a single array
+    // -- convert into a date datatype
+    // -- calculate how you are bucketing.
+    // -- calculate totals in each bucket.
+    dates.guesses.push(guessDate);
   });
-  console.log(length, weight);
+  console.log(dates);
 };
 categoryCount(userGuesses);
-// take the weight guess and the length guess and put then in an object as a pair
-// -- [{weight: 6.5, length: 22}, {weight: 8.6, length: 19}]
-// put all dates into a single array
-// -- convert into a date datatype
-// -- calculate how you are bucketing.
-// -- calculate totals in each bucket.
 // put all times into a single array.
 // -- calculate how you are bucketing.
 // -- calculate totals in each bucket.
