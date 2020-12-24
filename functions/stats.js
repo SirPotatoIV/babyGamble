@@ -1,4 +1,9 @@
 // create variables to store each guess category and create a basic shape.
+// pie chart
+// -- {category: total, label: label_name}
+const data = require('./sampleData.json');
+const userGuesses = data.guesses;
+
 let sex = {
   male: 0,
   female: 0,
@@ -36,20 +41,75 @@ let hairColor = {
   ],
 };
 
-let length = [];
+// bar graph
+// -- chartData: [category, total]
+let length = {
+  guesses: [],
+  chartData: [
+    [1, 0],
+    [2, 0],
+    [3, 0],
+    [4, 0],
+    [5, 0],
+  ],
+};
 
-let weight = [];
+let weight = {
+  guesses: [],
+  chartData: [
+    [1, 0],
+    [2, 0],
+    [3, 0],
+    [4, 0],
+    [5, 0],
+  ],
+};
 
-let lengthAndWeight = [{ length: 0, weight: 0 }];
+let dates = {
+  guesses: [],
+  chartData: [
+    [1, 0],
+    [2, 0],
+    [3, 0],
+    [4, 0],
+    [5, 0],
+  ],
+};
 
-let dates = [];
+let time = {
+  guesses: [],
+  chartData: [
+    [1, 0],
+    [2, 0],
+    [3, 0],
+    [4, 0],
+    [5, 0],
+  ],
+};
 
-let time = [];
+let dateAndTime = {
+  guesses: [],
+  chartData: [
+    [1, 0],
+    [2, 0],
+    [3, 0],
+    [4, 0],
+    [5, 0],
+  ],
+};
 
-let dateAndTime = [];
+// mark series (scatter plot)
+// [{categoryXaxis: total, categoryYaxis, total, size: 2}]
+let lengthAndWeight = [{ length: 0, weight: 0, size: 2 }];
 
 // sum up the total count of sex, eyeColor, and hairColor by category
-const categoryCount = (data) => {};
+const categoryCount = (guesses) => {
+  guesses.forEach((guess) => {
+    sex[guess.sex]++;
+  });
+  console.log(sex);
+};
+categoryCount(userGuesses);
 // put all the weights into a single array
 // -- convert each weight guess into a single number
 // -- There are 16 ounces in a pound, and add that to the pounds property
