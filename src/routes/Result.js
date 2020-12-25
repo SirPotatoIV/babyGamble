@@ -17,6 +17,7 @@ import { UserContext } from '../providers/UserProvider';
 
 const useStyles = makeStyles((theme) => ({
   root: {
+    flexGrow: 1,
     margin: theme.spacing(1),
     height: '500px',
   },
@@ -50,8 +51,9 @@ const Result = () => {
       <Grid
         container
         direction="row"
+        justify="space-between"
+        alignItems="center"
         className={classes.root}
-        alignContet="center"
       >
         <Grid item xs={12} className={classes.header}>
           <Typography variant="h3" align="center">
@@ -63,7 +65,7 @@ const Result = () => {
             If you came here to guess, sorry we are no longer accepting guesses.
           </Typography>
         </Grid>
-        <Grid item xs={12}>
+        {/* <Grid item xs={12}>
           <Typography variant="body1" align="center" className={classes.text}>
             In the near future when you come back to the site, this page will
             show a summary of all the guesses so far.
@@ -73,7 +75,7 @@ const Result = () => {
             updated, please click "Keep me updated". Otherwise, click "No
             thanks" and you will be logged out.
           </Typography>
-        </Grid>
+        </Grid> */}
         <Grid item xs={12} align="center">
           <Button
             className={classes.button}
@@ -92,7 +94,7 @@ const Result = () => {
             No thanks
           </Button>
         </Grid>
-        <Grid item xs={12} md={4}>
+        <Grid item xs={12} md={4} align="center">
           <RadialChart
             width={300}
             height={300}
@@ -108,7 +110,7 @@ const Result = () => {
           />
         </Grid>
         {/* eye color */}
-        <Grid item xs={12} md={4}>
+        <Grid item xs={12} md={4} align="center">
           <RadialChart
             height={300}
             width={300}
@@ -127,7 +129,7 @@ const Result = () => {
           />
         </Grid>
 
-        <Grid item xs={12} md={4}>
+        <Grid item xs={12} md={4} align="center">
           <RadialChart
             height={300}
             width={300}
@@ -149,7 +151,7 @@ const Result = () => {
           />
         </Grid>
 
-        <Grid item xs={12} lg={6}>
+        <Grid item xs={12} lg={6} align="center">
           <XYPlot
             height={400}
             width={700}
@@ -187,7 +189,7 @@ const Result = () => {
           </XYPlot>
         </Grid>
 
-        <Grid item xs={12} lg={6}>
+        <Grid item xs={12} lg={6} align="center">
           <XYPlot
             height={400}
             width={700}
@@ -227,7 +229,7 @@ const Result = () => {
           </XYPlot>
         </Grid>
 
-        <Grid item xs={12} lg={6}>
+        <Grid item xs={12} lg={6} align="center">
           <XYPlot
             height={400}
             width={700}
@@ -265,7 +267,7 @@ const Result = () => {
           </XYPlot>
         </Grid>
 
-        <Grid item xs={12} lg={6}>
+        <Grid item xs={12} lg={6} align="center">
           <XYPlot
             height={400}
             width={700}
@@ -303,7 +305,7 @@ const Result = () => {
           </XYPlot>
         </Grid>
 
-        <Grid item xs={12} lg={6}>
+        <Grid item xs={12} lg={6} align="center">
           <XYPlot
             height={400}
             width={700}
