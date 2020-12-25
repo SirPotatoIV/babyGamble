@@ -2,6 +2,18 @@
 
 Web app for users to guess different aspects about a baby.
 
+## Table of Contents
+
+- [babyGamble](#babygamble)
+  - [Table of Contents](#table-of-contents)
+  - [Sources used during development](#sources-used-during-development)
+    - [Styling/Components: Material UI](#stylingcomponents-material-ui)
+    - [Database: Firebase](#database-firebase)
+    - [Routing: React-Router-Dom](#routing-react-router-dom)
+    - [Charts: react-vis](#charts-react-vis)
+  - [Lessons Learned](#lessons-learned)
+  - [Future Development](#future-development)
+
 ## Sources used during development
 
 ### Styling/Components: Material UI
@@ -25,7 +37,7 @@ Utilized the library [react-vis](https://github.com/uber/react-vis) for creating
 
 If you are going to try and use it, I would recommend starting this this [example](https://uber.github.io/react-vis/documentation/getting-started/creating-a-new-react-vis-project) from the documentation site. One aspect I missed early on was that you have to import the libraries styles for the components to function properly. Also, I would recommend using the documentation in the repo over using the documentation in the site I linked to for the getting started example. The repo also links to this same site if you click `Docs`. I had better luck using the hyperlinks and info found under the [More Information](https://uber.github.io/react-vis/documentation/getting-started/creating-a-new-react-vis-project) section of the repos README.
 
-### Lessons Learned
+## Lessons Learned
 
 - Design or at least pseudo code the portions of your application that will utilize and depend on the data that you are having the user provide. To many this is probably obvious, and I have been taught this in the past, but dang did this project prove that theory to me.
 
@@ -35,7 +47,7 @@ If you are going to try and use it, I would recommend starting this this [exampl
 - TypeScript indeed is very useful.
   - I have started using TypeScript because it is required at work. I know a big advantage to using TypeScript is it can improve your development experenice, but it took going back to coding a React app without TypeScript to truly see how helpful it is to get all the suggestions that are provided due to you having to give everything a type.
 
-### Future Development
+## Future Development
 
 - Data for charts comes from the database. Right now the values for the charts are hard coded. Although I do not plan to recieve any more data for this little experiment app, it would be good pratice to have it functioning the way I had planned, which is every time a guess comes in the data for the charts is updated and displayed.
 - Refactor stats.js. This code is messy and there are lots of spots where code is being repeated. Some of this code would be nice to have for future projects where I use charts. Transforming your data so it meets the format for the chart data and figuring out to bucket was a lot more work than I anticipated. I would love to not do it again.
