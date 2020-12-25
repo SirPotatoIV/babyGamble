@@ -3,14 +3,22 @@ import { Link } from 'react-router-dom';
 import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
+import { makeStyles } from '@material-ui/core/styles';
 import Tab from '@material-ui/core/Tab';
 import Tabs from '@material-ui/core/Tabs';
 import { signOut } from '../Firebase';
 import { UserContext } from '../../providers/UserProvider';
 
+const useStyles = makeStyles((theme) => ({
+  button: {
+    margin: theme.spacing(1),
+  },
+}));
+
 export default function NavBar() {
   const [value, setValue] = useState(0);
   let user = useContext(UserContext);
+  let classes = useStyles();
 
   function handleClick(tab) {
     setValue(tab);
@@ -39,10 +47,14 @@ export default function NavBar() {
               />
             </Tabs> */}
           </Grid>
-          <Grid container align="end" xs={4} spacing={2}>
+          <Grid container align="end" xs={4} spacing={3}>
             <Grid item xs>
               {user.userProfile && (
-                <Button variant="contained" onClick={() => signOut()}>
+                <Button
+                  className={classes.button}
+                  variant="contained"
+                  onClick={() => signOut()}
+                >
                   Log out
                 </Button>
               )}

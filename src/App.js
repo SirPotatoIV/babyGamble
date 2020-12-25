@@ -1,10 +1,8 @@
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import Routes from './routes/Routes';
-
-import UserProvider from './providers/UserProvider';
-import GuessesProvider from './providers/GuessesProvider';
 import Navbar from './components/Navbar';
+import UserProvider from './providers/UserProvider';
 
 import './App.scss';
 
@@ -12,10 +10,8 @@ function App() {
   return (
     <BrowserRouter>
       <UserProvider>
-        <GuessesProvider>
-          <Navbar />
-          <Routes />
-        </GuessesProvider>
+        <Navbar />
+        <Routes />
       </UserProvider>
     </BrowserRouter>
   );
