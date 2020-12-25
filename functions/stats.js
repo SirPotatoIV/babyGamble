@@ -57,6 +57,7 @@ let weights = {
 
 let dates = {
   guesses: [],
+  guessesUnix: [],
   chartData: [],
 };
 
@@ -130,11 +131,11 @@ const categoryCount = (guesses) => {
     }
 
     // put all the lengths into a single array
-    // -- handle outliers
+    // -- handle outliers (nothing greater than 50)
     if (guessLength < 50) lengths.guesses.push(guessLength);
 
     // put all the weights into a single array
-    // -- handle outliers
+    // -- handle outliers (nothing greater than 50)
     // -- convert each weight guess into a single number
     // -- There are 16 ounces in a pound, and add that to the pounds property
     if (guessWeight < 50) weights.guesses.push(guessWeight);
@@ -149,8 +150,12 @@ const categoryCount = (guesses) => {
     });
 
     // put all dates into a single array
-    // -- convert into a date datatype
-    dates.guesses.push(guessDate);
+    // handle outliers (no date past March 1, 2021)
+    //
+    if (guessDate.valueOf() < dayjs('03-01-2021').valueOf()) {
+      dates.guesses.push(guessDate);
+      dates.guessesUnix.push(guessDate.valueOf());
+    }
 
     // put all times into a single array.
     times.guesses.push(guessTime);
@@ -175,7 +180,7 @@ const pieChartData = (guessType) => {
   });
 };
 // pieChartData(sex);
-pieChartData(hairColor);
+// pieChartData(hairColor);
 
 // bucketing
 // -- total number of guesses
@@ -203,5 +208,30 @@ const barChartData = (guessType, numOfBuckets) => {
     });
   }
 };
-barChartData(lengths, 5);
-console.log(lengths);
+// barChartData(lengths, 5);
+
+const timeBarChartData = (guessType, numOfBuckets) => {
+  const guesses = guessType.guessesUnix;
+
+  const min = Math.min(...guesses);
+  const max = Math.max(...guesses);
+  const range = max - min;
+  const bucketWidth = range / numOfBuckets;
+
+  for (let i = 0; i < numOfBuckets; i++) {
+    const bucketMin = min + bucketWidth * i;
+    const bucketMax = min + bucketWidth * (i + 1);
+    console.log(bucketMin, bucketMax);
+    const guessesInBucket = guesses.filter(
+      (value) => value >= bucketMin && value <= bucketMax
+    );
+    guessType.chartData.push({
+      x: `${dayjs(bucketMin).format('MM-DD-YYYY')} - ${dayjs(bucketMax).format(
+        'MM-DD-YYYY'
+      )}`,
+      y: guessesInBucket.length,
+    });
+  }
+};
+timeBarChartData(dates, 5);
+console.log(dates.chartData);

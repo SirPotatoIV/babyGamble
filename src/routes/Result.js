@@ -11,6 +11,7 @@ import {
   XYPlot,
   XAxis,
   YAxis,
+  HorizontalGridLines,
 } from 'react-vis';
 import { makeStyles } from '@material-ui/core/styles';
 import { UserContext } from '../providers/UserProvider';
@@ -46,117 +47,177 @@ const Result = () => {
   };
 
   return (
-    <Grid
-      container
-      direction="row"
-      alignContent="space-around"
-      className={classes.root}
-    >
-      <Grid item xs={12} className={classes.header}>
-        <Typography variant="h3" align="center">
-          Thanks for Guessing!
-        </Typography>
+    <>
+      <Grid
+        container
+        direction="row"
+        alignContent="space-around"
+        className={classes.root}
+      >
+        <Grid item xs={12} className={classes.header}>
+          <Typography variant="h3" align="center">
+            Thanks for Guessing!
+          </Typography>
+        </Grid>
+        <Grid item xs={12}>
+          <Typography variant="body1" align="center" className={classes.text}>
+            In the near future when you come back to the site, this page will
+            show a summary of all the guesses so far.
+          </Typography>
+          <Typography variant="body1" align="center" className={classes.text}>
+            If you would like to be notified by e-mail when this page is
+            updated, please click "Keep me updated". Otherwise, click "No
+            thanks" and you will be logged out.
+          </Typography>
+        </Grid>
+        <Grid item xs={12} align="center">
+          <Button
+            className={classes.button}
+            variant="contained"
+            color="primary"
+            onClick={() => handleKeepUpdated()}
+          >
+            Keep me updated
+          </Button>
+          <Button
+            className={classes.button}
+            variant="contained"
+            color="secondary"
+            onClick={() => signOut()}
+          >
+            No thanks
+          </Button>
+        </Grid>
+        <Grid item xs={12} align="center">
+          <RadialChart
+            width={300}
+            height={300}
+            showLabels={true}
+            labelsStyle={{
+              fontFamily: 'Roboto',
+              fontSize: '20px',
+            }}
+            data={[
+              { angle: 8, label: 'male' },
+              { angle: 15, label: 'female' },
+            ]}
+          />
+        </Grid>
       </Grid>
-      <Grid item xs={12}>
-        <Typography variant="body1" align="center" className={classes.text}>
-          In the near future when you come back to the site, this page will show
-          a summary of all the guesses so far.
-        </Typography>
-        <Typography variant="body1" align="center" className={classes.text}>
-          If you would like to be notified by e-mail when this page is updated,
-          please click "Keep me updated". Otherwise, click "No thanks" and you
-          will be logged out.
-        </Typography>
-      </Grid>
-      <Grid item xs={12} align="center">
-        <Button
-          className={classes.button}
-          variant="contained"
-          color="primary"
-          onClick={() => handleKeepUpdated()}
-        >
-          Keep me updated
-        </Button>
-        <Button
-          className={classes.button}
-          variant="contained"
-          color="secondary"
-          onClick={() => signOut()}
-        >
-          No thanks
-        </Button>
-      </Grid>
-      <Grid item xs={12} align="center">
-        <RadialChart
-          width={300}
-          height={300}
-          showLabels={true}
-          labelsStyle={{
-            fontFamily: 'Roboto',
-            fontSize: '20px',
+      <RadialChart
+        width={300}
+        height={300}
+        showLabels={true}
+        labelsStyle={{
+          fontFamily: 'Roboto',
+          fontSize: '20px',
+        }}
+        colorType="literal"
+        data={[
+          { angle: 10, label: 'brown', color: 'brown' },
+          { angle: 9, label: 'blue', color: 'blue' },
+          { angle: 3, label: 'green', color: 'green' },
+          { angle: 1, label: 'hazel', color: 'gray' },
+        ]}
+      />
+      <RadialChart
+        width={300}
+        height={300}
+        showLabels={true}
+        labelsStyle={{
+          fontFamily: 'Roboto',
+          fontSize: '20px',
+        }}
+        margin={{ left: 50, right: 50, top: 50, bottom: 50 }}
+        colorType="literal"
+        labelsRadiusMultiplier={1.2}
+        data={[
+          { angle: 10, label: 'brown', color: 'brown' },
+          { angle: 1, label: 'blonde', color: 'yellow' },
+          { angle: 2, label: 'black', color: 'black' },
+          { angle: 9, label: 'red', color: 'red' },
+          { angle: 1, label: 'bald', color: 'white' },
+        ]}
+      />
+      <XYPlot
+        height={400}
+        width={500}
+        xType="ordinal"
+        // yType="linear"
+        yDomain={[0, 10]}
+        getxDomain={(d) => d.x}
+      >
+        <XAxis
+          // tickLabelAngle={45}
+          // tickPadding={40}
+          style={{
+            text: {
+              fontSize: 14,
+              fontFamily: 'Roboto',
+            },
           }}
+        />
+        <YAxis
+          style={{
+            fontFamily: 'Roboto',
+            fontSize: 14,
+          }}
+        />
+        <HorizontalGridLines />
+        <VerticalBarSeries
+          // color="red"
+          xType="ordinal"
+          yType="linear"
+          animation={{ damping: 10, stiffness: 20 }}
           data={[
-            { angle: 1, label: 'Male' },
-            { angle: 2, label: 'Female' },
+            { x: '5.8125 - 6.65', y: 4 },
+            { x: '6.65 - 7.4875', y: 8 },
+            { x: '7.4875 - 8.325', y: 5 },
+            { x: '8.325 - 9.1625', y: 3 },
+            { x: '9.1625 - 10', y: 2 },
           ]}
         />
-      </Grid>
-      <Grid item xs={12} align="center">
-        <XYPlot
-          height={400}
-          width={400}
-          xType="ordinal"
-          // yType="linear"
-          yDomain={[0, 20]}
-          getxDomain={(d) => d.x}
-        >
-          {/* <VerticalGridLines /> */}
-          <XAxis
-            // tickLabelAngle={45}
-            // tickPadding={40}
-            style={{
-              text: {
-                fontSize: 20,
-                fontFamily: 'Roboto',
-              },
-            }}
-          />
-          <YAxis
-            style={{
-              fontFamily: 'Roboto',
+      </XYPlot>
+      <XYPlot
+        height={400}
+        width={500}
+        xType="ordinal"
+        // yType="linear"
+        yDomain={[0, 10]}
+        getxDomain={(d) => d.x}
+      >
+        <XAxis
+          // tickLabelAngle={45}
+          // tickPadding={40}
+          style={{
+            text: {
               fontSize: 14,
-            }}
-          />
-          <VerticalBarSeries
-            // color="red"
-            xType="ordinal"
-            yType="linear"
-            animation={{ damping: 10, stiffness: 20 }}
-            data={[
-              { x: 'test1', y: 10 },
-              { x: 'test2', y: 5 },
-              { x: 'test3', y: 15 },
-              { x: 'test4', y: 20 },
-            ]}
-          />
-        </XYPlot>
-      </Grid>
-      <Grid item xs={12} align="center">
-        <XYPlot width={300} height={300}>
-          <XAxis title="Length" />
-          <YAxis title="Weight" />
-          <MarkSeries
-            data={[
-              { x: 22, y: 6.5 },
-              { x: 19, y: 7.0 },
-              { x: 20, y: 8.0 },
-              { x: 20, y: 7.0 },
-              { x: 20, y: 7.0 },
-            ]}
-          />
-        </XYPlot>
-      </Grid>
-    </Grid>
+              fontFamily: 'Roboto',
+            },
+          }}
+        />
+        <YAxis
+          style={{
+            fontFamily: 'Roboto',
+            fontSize: 14,
+          }}
+        />
+        <HorizontalGridLines />
+        <VerticalBarSeries
+          // color="red"
+          xType="ordinal"
+          yType="linear"
+          animation={{ damping: 10, stiffness: 20 }}
+          data={[
+            { x: '10 - 13.2', y: 1 },
+            { x: '13.2 - 16.4', y: 2 },
+            { x: '16.4 - 19.6', y: 7 },
+            { x: '19.6 - 22.8', y: 10 },
+            { x: '22.8 - 26', y: 2 },
+          ]}
+        />
+      </XYPlot>
+    </>
   );
 };
 
