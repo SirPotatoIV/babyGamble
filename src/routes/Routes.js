@@ -4,6 +4,7 @@ import About from './About';
 
 import Home from './Home';
 import User from './User';
+import Navbar from '../components/Navbar';
 import { UserContext } from '../providers/UserProvider';
 
 const Routes = () => {
