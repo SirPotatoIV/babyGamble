@@ -222,7 +222,7 @@ const timeBarChartData = (guesses, numOfBuckets) => {
   const range = max - min;
   const bucketWidth = range / numOfBuckets;
 
-  const labelFormat = guesses.type === 'time' ? 'h:mm a' : 'MM-DD-YYYY';
+  const labelFormat = guesses.type === 'time' ? 'h:mm a' : 'M/D/YY';
 
   for (let i = 0; i < numOfBuckets; i++) {
     const bucketMin = min + bucketWidth * i;
@@ -239,5 +239,5 @@ const timeBarChartData = (guesses, numOfBuckets) => {
     });
   }
 };
-timeBarChartData(times, 5);
-console.log(times.chartData);
+timeBarChartData(dates, 5);
+console.log(dates.chartData);
