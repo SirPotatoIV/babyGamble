@@ -59,13 +59,11 @@ const Result = () => {
           <Typography variant="h3" align="center">
             See All The Guesses Below!
           </Typography>
-        </Grid>
-
-        <Grid item xs={12} className={classes.header}>
-          <Typography variant="h4" align="center">
+          <Typography variant="h5" align="center">
             If you came here to guess, sorry we are no longer accepting guesses.
           </Typography>
         </Grid>
+
         {/* <Grid item xs={12}>
           <Typography variant="body1" align="center" className={classes.text}>
             In the near future when you come back to the site, this page will
@@ -77,7 +75,7 @@ const Result = () => {
             thanks" and you will be logged out.
           </Typography>
         </Grid> */}
-        <Grid item xs={12} align="center">
+        {/* <Grid item xs={12} align="center">
           <Button
             className={classes.button}
             variant="contained"
@@ -94,7 +92,7 @@ const Result = () => {
           >
             No thanks
           </Button>
-        </Grid>
+        </Grid> */}
 
         <Grid item xs={12} md={4} align="center">
           <Typography variant="h5" align="center">
