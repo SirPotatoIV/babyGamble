@@ -13,7 +13,8 @@ const User = ({ user }) => {
           <Result />
         </Route>
         <Route exact path={`${path}`}>
-          {user.hasGuessed ? <Result /> : <Guess />}
+          {/* {user.hasGuessed ? <Result /> : <Guess />} */}
+          <Result />
         </Route>
       </Switch>
     </>
