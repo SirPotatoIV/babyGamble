@@ -197,6 +197,7 @@ const Result = () => {
             />
             <HorizontalGridLines />
             <VerticalBarSeries
+              color="red"
               xType="ordinal"
               yType="linear"
               animation={{ damping: 10, stiffness: 20 }}
@@ -281,6 +282,7 @@ const Result = () => {
             />
             <HorizontalGridLines />
             <VerticalBarSeries
+              color="blue"
               xType="ordinal"
               yType="linear"
               animation={{ damping: 10, stiffness: 20 }}
@@ -322,6 +324,7 @@ const Result = () => {
             />
             <HorizontalGridLines />
             <VerticalBarSeries
+              color="green"
               xType="ordinal"
               yType="linear"
               animation={{ damping: 10, stiffness: 20 }}
