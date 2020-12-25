@@ -5,21 +5,20 @@ import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import {
+  DiscreteColorLegend,
+  HorizontalGridLines,
   RadialChart,
   VerticalBarSeries,
-  XYPlot,
   XAxis,
+  XYPlot,
   YAxis,
-  HorizontalGridLines,
 } from 'react-vis';
 import { makeStyles } from '@material-ui/core/styles';
 import { UserContext } from '../providers/UserProvider';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    flexGrow: 1,
     margin: theme.spacing(1),
-    height: '500px',
   },
   text: {
     margin: theme.spacing(1),
@@ -54,6 +53,7 @@ const Result = () => {
         justify="space-between"
         alignItems="center"
         className={classes.root}
+        spacing={3}
       >
         <Grid item xs={12} className={classes.header}>
           <Typography variant="h3" align="center">
@@ -119,10 +119,15 @@ const Result = () => {
           <Typography variant="h5" align="center">
             Eye Color
           </Typography>
+          <DiscreteColorLegend
+            colors={['brown', 'blue', 'green', '#a5c6bb']}
+            items={['brown', 'blue', 'green', 'hazel']}
+            orientation={'horizontal'}
+          />
           <RadialChart
             height={300}
             width={300}
-            showLabels={true}
+            showLabels={false}
             labelsStyle={{
               fontFamily: 'Roboto',
               fontSize: '20px',
@@ -132,7 +137,7 @@ const Result = () => {
               { angle: 10, label: 'brown', color: 'brown' },
               { angle: 9, label: 'blue', color: 'blue' },
               { angle: 3, label: 'green', color: 'green' },
-              { angle: 1, label: 'hazel', color: 'gray' },
+              { angle: 1, label: 'hazel', color: '#a5c6bb' },
             ]}
           />
         </Grid>
@@ -141,10 +146,15 @@ const Result = () => {
           <Typography variant="h5" align="center">
             Hair Color
           </Typography>
+          <DiscreteColorLegend
+            colors={['brown', 'yellow', 'black', 'red', 'white']}
+            items={['brown', 'blonde', 'black', 'red', 'bald']}
+            orientation={'horizontal'}
+          />
           <RadialChart
             height={300}
             width={300}
-            showLabels={true}
+            showLabels={false}
             labelsStyle={{
               fontFamily: 'Roboto',
               fontSize: '20px',
