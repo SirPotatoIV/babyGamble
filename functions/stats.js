@@ -47,46 +47,22 @@ let hairColor = {
 // -- chartData: [category, total]
 let lengths = {
   guesses: [],
-  chartData: [
-    [1, 0],
-    [2, 0],
-    [3, 0],
-    [4, 0],
-    [5, 0],
-  ],
+  chartData: [],
 };
 
 let weights = {
   guesses: [],
-  chartData: [
-    [1, 0],
-    [2, 0],
-    [3, 0],
-    [4, 0],
-    [5, 0],
-  ],
+  chartData: [],
 };
 
 let dates = {
   guesses: [],
-  chartData: [
-    [1, 0],
-    [2, 0],
-    [3, 0],
-    [4, 0],
-    [5, 0],
-  ],
+  chartData: [],
 };
 
 let times = {
   guesses: [],
-  chartData: [
-    [1, 0],
-    [2, 0],
-    [3, 0],
-    [4, 0],
-    [5, 0],
-  ],
+  chartData: [],
 };
 
 // mark series (scatter plot)
@@ -205,9 +181,33 @@ const pieChartData = (guessType) => {
   });
 };
 // pieChartData(sex);
-pieChartData(eyeColor);
-console.log(eyeColor);
+pieChartData(hairColor);
+
 // bucketing
 // -- total number of guesses
 // -- calculate the range: max - min (there may be Math methods for this)
 // -- divide range by guesses
+
+const barChartData = (guessType, numOfBuckets) => {
+  const guesses = guessType.guesses;
+
+  const min = Math.min(...guesses);
+  const max = Math.max(...guesses);
+  const range = max - min;
+  const bucketWidth = range / numOfBuckets;
+
+  for (let i = 0; i < numOfBuckets; i++) {
+    const bucketMin = min + bucketWidth * i;
+    const bucketMax = min + bucketWidth * (i + 1);
+    console.log(bucketMin, bucketMax);
+    const guessesInBucket = guesses.filter(
+      (value) => value > bucketMin && value <= bucketMax
+    );
+    guessType.chartData.push({
+      x: `${bucketMin} - ${bucketMax}`,
+      y: guessesInBucket.length,
+    });
+  }
+};
+barChartData(weights, 5);
+console.log(weights);
