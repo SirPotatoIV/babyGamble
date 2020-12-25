@@ -6,7 +6,6 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import {
   RadialChart,
-  MarkSeries,
   VerticalBarSeries,
   XYPlot,
   XAxis,
@@ -143,7 +142,6 @@ const Result = () => {
         height={400}
         width={700}
         xType="ordinal"
-        // yType="linear"
         yDomain={[0, 10]}
         getxDomain={(d) => d.x}
       >
@@ -165,7 +163,6 @@ const Result = () => {
         />
         <HorizontalGridLines />
         <VerticalBarSeries
-          // color="red"
           xType="ordinal"
           yType="linear"
           animation={{ damping: 10, stiffness: 20 }}
@@ -182,7 +179,6 @@ const Result = () => {
         height={400}
         width={700}
         xType="ordinal"
-        // yType="linear"
         yDomain={[0, 10]}
         getxDomain={(d) => d.x}
       >
@@ -204,7 +200,6 @@ const Result = () => {
         />
         <HorizontalGridLines />
         <VerticalBarSeries
-          // color="red"
           xType="ordinal"
           yType="linear"
           animation={{ damping: 10, stiffness: 20 }}
@@ -221,13 +216,10 @@ const Result = () => {
         height={400}
         width={700}
         xType="ordinal"
-        // yType="linear"
         yDomain={[0, 10]}
         getxDomain={(d) => d.x}
       >
         <XAxis
-          // tickLabelAngle={20}
-          // tickPadding={40}
           style={{
             text: {
               fontSize: 14,
@@ -243,7 +235,6 @@ const Result = () => {
         />
         <HorizontalGridLines />
         <VerticalBarSeries
-          // color="red"
           xType="ordinal"
           yType="linear"
           animation={{ damping: 10, stiffness: 20 }}
@@ -260,13 +251,10 @@ const Result = () => {
         height={400}
         width={700}
         xType="ordinal"
-        // yType="linear"
         yDomain={[0, 10]}
         getxDomain={(d) => d.x}
       >
         <XAxis
-          // tickLabelAngle={20}
-          // tickPadding={40}
           style={{
             text: {
               fontSize: 14,
@@ -282,7 +270,6 @@ const Result = () => {
         />
         <HorizontalGridLines />
         <VerticalBarSeries
-          // color="red"
           xType="ordinal"
           yType="linear"
           animation={{ damping: 10, stiffness: 20 }}
@@ -299,13 +286,10 @@ const Result = () => {
         height={400}
         width={700}
         xType="ordinal"
-        // yType="linear"
         yDomain={[0, 10]}
         getxDomain={(d) => d.x}
       >
         <XAxis
-          // tickLabelAngle={20}
-          // tickPadding={40}
           style={{
             text: {
               fontSize: 14,
@@ -321,7 +305,6 @@ const Result = () => {
         />
         <HorizontalGridLines />
         <VerticalBarSeries
-          // color="red"
           xType="ordinal"
           yType="linear"
           animation={{ damping: 10, stiffness: 20 }}
