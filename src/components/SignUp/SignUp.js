@@ -42,11 +42,16 @@ export default function SignUp() {
 
   async function handleSignUp() {
     try {
-      let { user } = await auth.createUserWithEmailAndPassword(email, password);
-
-      user.displayName = displayName;
-
-      createUserProfileDocument(user);
+      const { user } = await auth.createUserWithEmailAndPassword(
+        email,
+        password
+      );
+      const additionalInfo = {
+        displayName: displayName,
+        hasGuessed: false,
+        requestedUpdates: false,
+      };
+      await createUserProfileDocument(user, additionalInfo);
 
       // Clear form
       setEmail('');

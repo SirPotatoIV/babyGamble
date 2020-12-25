@@ -39,10 +39,8 @@ const TimePicker = ({ time, setTime }) => {
   };
   return (
     <>
-      <FormControl className={classes.formControl}>
-        <InputLabel id="hourLabel" required={true}>
-          Hour
-        </InputLabel>
+      <FormControl className={classes.formControl} required={true}>
+        <InputLabel id="hourLabel">Hour</InputLabel>
         <Select
           labelId="hourLabel"
           id="hour"
@@ -59,10 +57,8 @@ const TimePicker = ({ time, setTime }) => {
         </Select>
       </FormControl>
       <span className={classes.time_colon}>:</span>
-      <FormControl className={classes.formControl}>
-        <InputLabel id="minuteLabel" required={true}>
-          Minute
-        </InputLabel>
+      <FormControl className={classes.formControl} required={true}>
+        <InputLabel id="minuteLabel">Minute</InputLabel>
         <Select
           labelId="minuteLabel"
           id="minute"
@@ -78,10 +74,8 @@ const TimePicker = ({ time, setTime }) => {
           ))}
         </Select>
       </FormControl>
-      <FormControl className={classes.formControl}>
-        <InputLabel id="meridiemLabel" required={true}>
-          AM / PM
-        </InputLabel>
+      <FormControl className={classes.formControl} required={true}>
+        <InputLabel id="meridiemLabel">AM / PM</InputLabel>
         <Select
           labelId="meridiemLabel"
           id="meridiem"
