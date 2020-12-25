@@ -56,13 +56,16 @@ let weights = {
 };
 
 let dates = {
+  type: 'date',
   guesses: [],
   guessesUnix: [],
   chartData: [],
 };
 
 let times = {
+  type: 'time',
   guesses: [],
+  guessesUnix: [],
   chartData: [],
 };
 
@@ -159,6 +162,7 @@ const categoryCount = (guesses) => {
 
     // put all times into a single array.
     times.guesses.push(guessTime);
+    times.guessesUnix.push(guessTime.valueOf());
 
     // put date and time into a single dataset.
     dateAndTimes.chartData.push({ date: guessDate, time: guessTime, size: 2 });
@@ -210,28 +214,30 @@ const barChartData = (guessType, numOfBuckets) => {
 };
 // barChartData(lengths, 5);
 
-const timeBarChartData = (guessType, numOfBuckets) => {
-  const guesses = guessType.guessesUnix;
+const timeBarChartData = (guesses, numOfBuckets) => {
+  const guessData = guesses.guessesUnix;
 
-  const min = Math.min(...guesses);
-  const max = Math.max(...guesses);
+  const min = Math.min(...guessData);
+  const max = Math.max(...guessData);
   const range = max - min;
   const bucketWidth = range / numOfBuckets;
+
+  const labelFormat = guesses.type === 'time' ? 'h:mm a' : 'MM-DD-YYYY';
 
   for (let i = 0; i < numOfBuckets; i++) {
     const bucketMin = min + bucketWidth * i;
     const bucketMax = min + bucketWidth * (i + 1);
-    console.log(bucketMin, bucketMax);
-    const guessesInBucket = guesses.filter(
+
+    const guessesInBucket = guessData.filter(
       (value) => value >= bucketMin && value <= bucketMax
     );
-    guessType.chartData.push({
-      x: `${dayjs(bucketMin).format('MM-DD-YYYY')} - ${dayjs(bucketMax).format(
-        'MM-DD-YYYY'
+    guesses.chartData.push({
+      x: `${dayjs(bucketMin).format(labelFormat)} - ${dayjs(bucketMax).format(
+        labelFormat
       )}`,
       y: guessesInBucket.length,
     });
   }
 };
-timeBarChartData(dates, 5);
-console.log(dates.chartData);
+timeBarChartData(times, 5);
+console.log(times.chartData);
