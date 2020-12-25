@@ -60,6 +60,7 @@ const Result = () => {
             See All The Guesses Below!
           </Typography>
         </Grid>
+
         <Grid item xs={12} className={classes.header}>
           <Typography variant="h4" align="center">
             If you came here to guess, sorry we are no longer accepting guesses.
@@ -94,7 +95,11 @@ const Result = () => {
             No thanks
           </Button>
         </Grid>
+
         <Grid item xs={12} md={4} align="center">
+          <Typography variant="h5" align="center">
+            Sex
+          </Typography>
           <RadialChart
             width={300}
             height={300}
@@ -109,8 +114,11 @@ const Result = () => {
             ]}
           />
         </Grid>
-        {/* eye color */}
+
         <Grid item xs={12} md={4} align="center">
+          <Typography variant="h5" align="center">
+            Eye Color
+          </Typography>
           <RadialChart
             height={300}
             width={300}
@@ -130,6 +138,9 @@ const Result = () => {
         </Grid>
 
         <Grid item xs={12} md={4} align="center">
+          <Typography variant="h5" align="center">
+            Hair Color
+          </Typography>
           <RadialChart
             height={300}
             width={300}
@@ -152,6 +163,9 @@ const Result = () => {
         </Grid>
 
         <Grid item xs={12} lg={6} align="center">
+          <Typography variant="h5" align="center">
+            Weight (pounds)
+          </Typography>
           <XYPlot
             height={400}
             width={700}
@@ -190,6 +204,9 @@ const Result = () => {
         </Grid>
 
         <Grid item xs={12} lg={6} align="center">
+          <Typography variant="h5" align="center">
+            Length (in)
+          </Typography>
           <XYPlot
             height={400}
             width={700}
@@ -230,6 +247,9 @@ const Result = () => {
         </Grid>
 
         <Grid item xs={12} lg={6} align="center">
+          <Typography variant="h5" align="center">
+            Time
+          </Typography>
           <XYPlot
             height={400}
             width={700}
@@ -268,44 +288,9 @@ const Result = () => {
         </Grid>
 
         <Grid item xs={12} lg={6} align="center">
-          <XYPlot
-            height={400}
-            width={700}
-            xType="ordinal"
-            yDomain={[0, 10]}
-            getxDomain={(d) => d.x}
-          >
-            <XAxis
-              style={{
-                text: {
-                  fontSize: 14,
-                  fontFamily: 'Roboto',
-                },
-              }}
-            />
-            <YAxis
-              style={{
-                fontFamily: 'Roboto',
-                fontSize: 14,
-              }}
-            />
-            <HorizontalGridLines />
-            <VerticalBarSeries
-              xType="ordinal"
-              yType="linear"
-              animation={{ damping: 10, stiffness: 20 }}
-              data={[
-                { x: '12:00 am - 4:16 am', y: 6 },
-                { x: '4:16 am - 8:32 am', y: 5 },
-                { x: '8:32 am - 12:48 pm', y: 5 },
-                { x: '12:48 pm - 5:04 pm', y: 4 },
-                { x: '5:04 pm - 9:21 pm', y: 3 },
-              ]}
-            />
-          </XYPlot>
-        </Grid>
-
-        <Grid item xs={12} lg={6} align="center">
+          <Typography variant="h5" align="center">
+            Date
+          </Typography>
           <XYPlot
             height={400}
             width={700}
