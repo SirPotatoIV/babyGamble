@@ -105,8 +105,8 @@ const Result = () => {
         </Grid>
       </Grid>
       <RadialChart
-        width={300}
         height={300}
+        width={300}
         showLabels={true}
         labelsStyle={{
           fontFamily: 'Roboto',
@@ -121,8 +121,8 @@ const Result = () => {
         ]}
       />
       <RadialChart
-        width={300}
         height={300}
+        width={300}
         showLabels={true}
         labelsStyle={{
           fontFamily: 'Roboto',
@@ -141,7 +141,7 @@ const Result = () => {
       />
       <XYPlot
         height={400}
-        width={500}
+        width={700}
         xType="ordinal"
         // yType="linear"
         yDomain={[0, 10]}
@@ -180,7 +180,7 @@ const Result = () => {
       </XYPlot>
       <XYPlot
         height={400}
-        width={500}
+        width={700}
         xType="ordinal"
         // yType="linear"
         yDomain={[0, 10]}
@@ -214,6 +214,123 @@ const Result = () => {
             { x: '16.4 - 19.6', y: 7 },
             { x: '19.6 - 22.8', y: 10 },
             { x: '22.8 - 26', y: 2 },
+          ]}
+        />
+      </XYPlot>
+      <XYPlot
+        height={400}
+        width={700}
+        xType="ordinal"
+        // yType="linear"
+        yDomain={[0, 10]}
+        getxDomain={(d) => d.x}
+      >
+        <XAxis
+          // tickLabelAngle={20}
+          // tickPadding={40}
+          style={{
+            text: {
+              fontSize: 14,
+              fontFamily: 'Roboto',
+            },
+          }}
+        />
+        <YAxis
+          style={{
+            fontFamily: 'Roboto',
+            fontSize: 14,
+          }}
+        />
+        <HorizontalGridLines />
+        <VerticalBarSeries
+          // color="red"
+          xType="ordinal"
+          yType="linear"
+          animation={{ damping: 10, stiffness: 20 }}
+          data={[
+            { x: '12:00 am - 4:16 am', y: 6 },
+            { x: '4:16 am - 8:32 am', y: 5 },
+            { x: '8:32 am - 12:48 pm', y: 5 },
+            { x: '12:48 pm - 5:04 pm', y: 4 },
+            { x: '5:04 pm - 9:21 pm', y: 3 },
+          ]}
+        />
+      </XYPlot>
+      <XYPlot
+        height={400}
+        width={700}
+        xType="ordinal"
+        // yType="linear"
+        yDomain={[0, 10]}
+        getxDomain={(d) => d.x}
+      >
+        <XAxis
+          // tickLabelAngle={20}
+          // tickPadding={40}
+          style={{
+            text: {
+              fontSize: 14,
+              fontFamily: 'Roboto',
+            },
+          }}
+        />
+        <YAxis
+          style={{
+            fontFamily: 'Roboto',
+            fontSize: 14,
+          }}
+        />
+        <HorizontalGridLines />
+        <VerticalBarSeries
+          // color="red"
+          xType="ordinal"
+          yType="linear"
+          animation={{ damping: 10, stiffness: 20 }}
+          data={[
+            { x: '12:00 am - 4:16 am', y: 6 },
+            { x: '4:16 am - 8:32 am', y: 5 },
+            { x: '8:32 am - 12:48 pm', y: 5 },
+            { x: '12:48 pm - 5:04 pm', y: 4 },
+            { x: '5:04 pm - 9:21 pm', y: 3 },
+          ]}
+        />
+      </XYPlot>
+      <XYPlot
+        height={400}
+        width={700}
+        xType="ordinal"
+        // yType="linear"
+        yDomain={[0, 10]}
+        getxDomain={(d) => d.x}
+      >
+        <XAxis
+          // tickLabelAngle={20}
+          // tickPadding={40}
+          style={{
+            text: {
+              fontSize: 14,
+              fontFamily: 'Roboto',
+            },
+          }}
+        />
+        <YAxis
+          style={{
+            fontFamily: 'Roboto',
+            fontSize: 14,
+          }}
+        />
+        <HorizontalGridLines />
+        <VerticalBarSeries
+          // color="red"
+          xType="ordinal"
+          yType="linear"
+          animation={{ damping: 10, stiffness: 20 }}
+          data={[
+            { x: '12/30/20 - 1/3/21', y: 4 },
+            { x: '1/3/21 - 1/8/21', y: 9 },
+            { x: '1/8/21 - 1/13/21', y: 2 },
+            { x: '1/13/21 - 1/18/21', y: 2 },
+            { x: '1/18/21 - 1/23/21', y: 4 },
           ]}
         />
       </XYPlot>
