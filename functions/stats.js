@@ -131,15 +131,13 @@ const categoryCount = (guesses) => {
 
     // put all the lengths into a single array
     // -- handle outliers
-    // -- calculate how you are bucketing.
-    // -- calculate totals in each bucket.
-    lengths.guesses.push(guessLength);
+    if (guessLength < 50) lengths.guesses.push(guessLength);
 
     // put all the weights into a single array
     // -- handle outliers
     // -- convert each weight guess into a single number
     // -- There are 16 ounces in a pound, and add that to the pounds property
-    weights.guesses.push(guessWeight);
+    if (guessWeight < 50) weights.guesses.push(guessWeight);
 
     // take the weight guess and the length guess and put then in an object as a pair
     // -- [{weight: 6.5, length: 22}, {weight: 8.6, length: 19}]
@@ -152,13 +150,9 @@ const categoryCount = (guesses) => {
 
     // put all dates into a single array
     // -- convert into a date datatype
-    // -- calculate how you are bucketing.
-    // -- calculate totals in each bucket.
     dates.guesses.push(guessDate);
 
     // put all times into a single array.
-    // -- calculate how you are bucketing.
-    // -- calculate totals in each bucket.
     times.guesses.push(guessTime);
 
     // put date and time into a single dataset.
@@ -201,7 +195,7 @@ const barChartData = (guessType, numOfBuckets) => {
     const bucketMax = min + bucketWidth * (i + 1);
     console.log(bucketMin, bucketMax);
     const guessesInBucket = guesses.filter(
-      (value) => value > bucketMin && value <= bucketMax
+      (value) => value >= bucketMin && value <= bucketMax
     );
     guessType.chartData.push({
       x: `${bucketMin} - ${bucketMax}`,
@@ -209,5 +203,5 @@ const barChartData = (guessType, numOfBuckets) => {
     });
   }
 };
-barChartData(weights, 5);
-console.log(weights);
+barChartData(lengths, 5);
+console.log(lengths);
